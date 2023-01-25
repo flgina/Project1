@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
         {
             health -= 3;
             healthText.text = "Health: " + health.ToString();
-            collision.gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }
