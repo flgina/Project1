@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
         // red
         if (collision.gameObject.tag == "red")
         {
+            Debug.Log("Collision detercted");
             health -= 1;
             healthText.text = "Health: " + health.ToString();
             Destroy(gameObject);

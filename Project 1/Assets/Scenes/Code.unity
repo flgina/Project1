@@ -803,7 +803,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1659,7 +1659,7 @@ GameObject:
   - component: {fileID: 1971753810}
   - component: {fileID: 1971753809}
   m_Layer: 0
-  m_Name: Red
+  m_Name: red
   m_TagString: red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
