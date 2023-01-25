@@ -43,30 +43,27 @@ public class PlayerController : MonoBehaviour
     }
 
     // check tag and do damage
-
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // red
         if (other.CompareTag("red"))
         {
             health -= 1;
             healthText.text = "Health: " + health.ToString();
-            Destroy(other.gameObject);
         }
 
+        // green
         if (other.CompareTag("green"))
         {
             health -= 2;
             healthText.text = "Health: " + health.ToString();
-            Destroy(other.gameObject);
-
         }
 
+        // blue
         if (other.CompareTag("blue"))
         {
             health -= 3;
             healthText.text = "Health: " + health.ToString();
-            Destroy(other.gameObject);
-
         }
     }
 
