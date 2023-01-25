@@ -43,31 +43,31 @@ public class PlayerController : MonoBehaviour
     }
 
     // check tag and do damage
-    void OnCollisonEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        // red
-        if (collision.gameObject.tag == "red")
+        if (other.CompareTag("red"))
         {
-            Debug.Log("Collision detercted");
             health -= 1;
             healthText.text = "Health: " + health.ToString();
-            Destroy(gameObject);
+            Destroy(other.gameObject);
         }
 
-        // green
-        if (collision.gameObject.tag == "green")
+        if (other.CompareTag("green"))
         {
             health -= 2;
             healthText.text = "Health: " + health.ToString();
-            Destroy(gameObject);
+            Destroy(other.gameObject);
+
         }
 
-        // blue
-        if (collision.gameObject.tag == "blue")
+        if (other.CompareTag("blue"))
         {
             health -= 3;
             healthText.text = "Health: " + health.ToString();
-            Destroy(gameObject);
+            Destroy(other.gameObject);
+
         }
     }
+
 }
