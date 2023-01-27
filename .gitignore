@@ -7,6 +7,7 @@
 **/[Bb]uilds/
 **/[Ll]ogs/
 **/[Mm]emoryCaptures/
+**/[Uu]serSettings/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !**/[Aa]ssets/**/*.meta
@@ -55,3 +56,5 @@
 
 # Crashlytics generated file
 **/crashlytics-build.properties
+Project 1/UserSettings/EditorUserSettings.asset
+Project 1/UserSettings/EditorUserSettings.asset
