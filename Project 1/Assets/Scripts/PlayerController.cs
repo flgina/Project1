@@ -24,12 +24,21 @@ public class PlayerController : MonoBehaviour
     // normal attack
     public GameObject PlayerAttackPrefab;
 
+    // animator
+    Animator animator;
+
+    // animation
+    public GameObject Player;
+
 
     // Start is called before the first frame update
     void Start()
     {
         // move
         rigidbody2d = GetComponent<Rigidbody2D>();
+
+        // animator
+        animator = GetComponent<Animator>();
 
         // crouch
         normalHeight = transform.localScale;
@@ -60,12 +69,12 @@ public class PlayerController : MonoBehaviour
         yInput = Input.GetAxisRaw("Vertical");
         if (Input.GetKeyDown(KeyCode.S))
         {
-            transform.localScale = new Vector2(normalHeight.x, crouchHeight);
-            speed = 0;
+            animator.SetBool("Crouch", true);
+            speed = 0f;
         }
         if (Input.GetKeyUp(KeyCode.S))
         {
-            transform.localScale = normalHeight;
+            animator.SetBool("Crouch", false);
             speed = 3f;
         }
 
