@@ -13,20 +13,22 @@ public class PlayerController : MonoBehaviour
     public float speed = 3.0f;
 
     // crouch
-    public float playerHeight = 4.5f;
-    public float normalHeight;
+    private Vector2 normalHeight;
     public float crouchHeight;
+    private float yInput;
 
     // health
     public TextMeshProUGUI healthText;
     public int health;
-
 
     // Start is called before the first frame update
     void Start()
     {
         // move
         rigidbody2d = GetComponent<Rigidbody2D>();
+
+        // crouch
+        normalHeight = transform.localScale;
 
         // health
         health = 10;
@@ -51,20 +53,23 @@ public class PlayerController : MonoBehaviour
         }
 
         // crouch
+        yInput = Input.GetAxisRaw("Vertical");
         if (Input.GetKeyDown(KeyCode.S))
         {
-            playerHeight = crouchHeight;
+            transform.localScale = new Vector2(normalHeight.x, crouchHeight);
+            speed = 0;
         }
         if (Input.GetKeyUp(KeyCode.S))
         {
-            playerHeight = normalHeight;
+            transform.localScale = normalHeight;
+            speed = 3f;
         }
     }
 
     void FixedUpdate()
     {
         // jump
-        rigidbody2d.AddForce(new Vector2(horizontal * speed, vertical * speed));
+        rigidbody2d.AddForce(new Vector2(horizontal * speed, vertical * speed));  
     }
 
     // check tag and do damage
