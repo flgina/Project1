@@ -74,10 +74,6 @@ public class PlayerController : MonoBehaviour
         {
             Launch();
         }
-        /*if (Input.GetMouseButtonUp(0))
-        {
-            Debug.Log("Released primary button.");
-        }*/
     }
 
     void FixedUpdate()
