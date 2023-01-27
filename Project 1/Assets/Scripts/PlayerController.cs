@@ -21,6 +21,10 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI healthText;
     public int health;
 
+    // normal attack
+    public GameObject PlayerAttackPrefab;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +68,16 @@ public class PlayerController : MonoBehaviour
             transform.localScale = normalHeight;
             speed = 3f;
         }
+
+        // normal attack
+        if (Input.GetMouseButtonDown(0))
+        {
+            Launch();
+        }
+        /*if (Input.GetMouseButtonUp(0))
+        {
+            Debug.Log("Released primary button.");
+        }*/
     }
 
     void FixedUpdate()
@@ -107,5 +121,14 @@ public class PlayerController : MonoBehaviour
                 rigidbody2d.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
             }
         }
+    }
+
+    // normal attack
+    void Launch()
+    {
+        GameObject PlayerAttackObject = Instantiate(PlayerAttackPrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+
+        PlayerAttack playerAttack = PlayerAttackObject.GetComponent<PlayerAttack>();
+        playerAttack.Launch(gameObject.transform.position, 300);
     }
 }

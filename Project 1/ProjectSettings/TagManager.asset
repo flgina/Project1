@@ -8,6 +8,7 @@ TagManager:
   - blue
   - green
   - Ground
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX

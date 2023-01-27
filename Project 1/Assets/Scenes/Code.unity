@@ -202,9 +202,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  crouchHeight: 1
+  crouchHeight: 0
   healthText: {fileID: 953815995}
   health: 0
+  PlayerAttackPrefab: {fileID: 6611727357735112323, guid: e7102722bcff2d741a99ebf61c75f5e8, type: 3}
 --- !u!4 &7800869
 Transform:
   m_ObjectHideFlags: 0
