@@ -12,9 +12,15 @@ public class PlayerController : MonoBehaviour
     float vertical;
     public float speed = 3.0f;
 
+    // crouch
+    public float playerHeight = 4.5f;
+    public float normalHeight;
+    public float crouchHeight;
+
     // health
     public TextMeshProUGUI healthText;
     public int health;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,15 +37,34 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+
+        // move left
+        if (Input.GetKey(KeyCode.A))
+        {
+            gameObject.transform.position += Vector3.left * speed * Time.deltaTime;
+        }
+
+        // move right
+        if (Input.GetKey(KeyCode.D))
+        {
+            gameObject.transform.position += Vector3.right * speed * Time.deltaTime;
+        }
+
+        // crouch
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            playerHeight = crouchHeight;
+        }
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            playerHeight = normalHeight;
+        }
     }
 
     void FixedUpdate()
     {
-        Vector2 position = rigidbody2d.position;
-        position.x = position.x + speed * horizontal * Time.deltaTime;
-        position.y = position.y + speed * vertical * Time.deltaTime;
-
-        rigidbody2d.MovePosition(position);
+        // jump
+        rigidbody2d.AddForce(new Vector2(horizontal * speed, vertical * speed));
     }
 
     // check tag and do damage
@@ -67,4 +92,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // jump 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Ground")
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                rigidbody2d.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
+            }
+        }
+    }
 }
