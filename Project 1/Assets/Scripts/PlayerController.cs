@@ -64,7 +64,6 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.transform.position += Vector3.right * speed * Time.deltaTime;
         }
-        
 
         // crouch
         yInput = Input.GetAxisRaw("Vertical");
