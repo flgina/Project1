@@ -4,11 +4,34 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    // Red Enemy Script
+    RedEnemy redEnemy;
+    
+    // Green Enemy Script
+    GreenEnemy greenEnemy;
+
+    // Blue Enemy Script
+    BlueEnemy blueEnemy;
+
+    // rigidbody
     Rigidbody2D rigidbody2D;
+
+    // damage
+    int damage = 1;
 
     void Awake()
     {
+        // rigidbody
         rigidbody2D = GetComponent<Rigidbody2D>();
+
+        // red enemy
+        redEnemy = GameObject.FindObjectOfType<RedEnemy>();
+
+        // green enemy
+        greenEnemy = GameObject.FindObjectOfType<GreenEnemy>();
+
+        // blue enemy
+        blueEnemy = GameObject.FindObjectOfType<BlueEnemy>();
     }
 
     public void Launch(Vector2 direction, float force)
@@ -30,6 +53,7 @@ public class PlayerAttack : MonoBehaviour
         if (other.CompareTag("red"))
         {
             Destroy(gameObject);
+            redEnemy.UpdateDamage(1);
             Debug.Log("Collison Red");
         }
 
@@ -37,6 +61,7 @@ public class PlayerAttack : MonoBehaviour
         if (other.CompareTag("green"))
         {
             Destroy(gameObject);
+            greenEnemy.UpdateDamage(1);
             Debug.Log("Collison Green");
         }
 
@@ -44,6 +69,7 @@ public class PlayerAttack : MonoBehaviour
         if (other.CompareTag("blue"))
         {
             Destroy(gameObject);
+            blueEnemy.UpdateDamage(1);
             Debug.Log("Collison Blue");
         }
     }

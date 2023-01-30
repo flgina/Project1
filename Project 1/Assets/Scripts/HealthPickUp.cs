@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class HealthPickUp : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // health goes up 2
+    // red enemy = 20%
+    // green = 30%
+    // blue = 40%
 }
