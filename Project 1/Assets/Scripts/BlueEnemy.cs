@@ -27,11 +27,12 @@ public class BlueEnemy : MonoBehaviour
     public void UpdateDamage(int damage)
     {
         CurrentDamage += damage;
-        if (targetDamage >= damage)
+        if (targetDamage == CurrentDamage)
         {
             Destroy(gameObject);
             Debug.Log("damage = " + damage);
             Debug.Log("CurrentDamage = " + CurrentDamage);
+            Debug.Log("targetDamage = " + targetDamage);
         }
     }
 }

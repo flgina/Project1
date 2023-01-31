@@ -27,11 +27,17 @@ public class GreenEnemy : MonoBehaviour
     public void UpdateDamage(int damage)
     {
         CurrentDamage += damage;
-        if (targetDamage >= damage)
+
+        Debug.Log("damage = " + damage);
+        Debug.Log("CurrentDamage = " + CurrentDamage);
+        Debug.Log("targetDamage = " + targetDamage);
+
+        if (targetDamage == CurrentDamage)
         {
             Destroy(gameObject);
             Debug.Log("damage = " + damage);
             Debug.Log("CurrentDamage = " + CurrentDamage);
+            Debug.Log("targetDamage = " + targetDamage);
         }
     }
 }

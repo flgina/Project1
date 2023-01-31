@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public float speed = 2f;
     // Red Enemy Script
     RedEnemy redEnemy;
     
@@ -13,17 +14,11 @@ public class PlayerAttack : MonoBehaviour
     // Blue Enemy Script
     BlueEnemy blueEnemy;
 
-    // rigidbody
-    Rigidbody2D rigidbody2D;
-
     // damage
-    int damage = 1;
+    int damage = 0;
 
     void Awake()
     {
-        // rigidbody
-        rigidbody2D = GetComponent<Rigidbody2D>();
-
         // red enemy
         redEnemy = GameObject.FindObjectOfType<RedEnemy>();
 
@@ -34,17 +29,9 @@ public class PlayerAttack : MonoBehaviour
         blueEnemy = GameObject.FindObjectOfType<BlueEnemy>();
     }
 
-    public void Launch(Vector2 direction, float force)
-    {
-        rigidbody2D.AddForce(direction * force);
-    }
-
     void Update()
     {
-        if(transform.position.magnitude > 10.0f)
-        {
-            Destroy(gameObject);
-        }
+        transform.position += transform.right * Time.deltaTime * speed;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -14,7 +14,7 @@ public class RedEnemy : MonoBehaviour
     {
         damage = 0;
         CurrentDamage = 0;
-        targetDamage = 2;
+        targetDamage = 1;
     }
 
     // Update is called once per frame
@@ -27,11 +27,12 @@ public class RedEnemy : MonoBehaviour
     public void UpdateDamage(int damage)
     {
         CurrentDamage += damage;
-        if (targetDamage >= damage)
+        if (targetDamage >= CurrentDamage)
         {
             Destroy(gameObject);
             Debug.Log("damage = " + damage);
             Debug.Log("CurrentDamage = " + CurrentDamage);
+            Debug.Log("targetDamage = " + targetDamage);
         }
     }
 }
