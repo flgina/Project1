@@ -28,12 +28,6 @@ public class RedEnemy : MonoBehaviour
         targetFireballDamage = 1;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //
-    }
-
     // updates damage
     public void UpdateDamage(int damage)
     {

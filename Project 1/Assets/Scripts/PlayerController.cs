@@ -120,6 +120,18 @@ public class PlayerController : MonoBehaviour
             health -= 3;
             healthText.text = "Health: " + health.ToString();
         }
+
+        // health
+        if (other.CompareTag("health") && health < 10)
+        {
+            health += 2;
+            healthText.text = "Health: " + health.ToString();
+            other.gameObject.SetActive(false);
+        }
+        if (other.CompareTag("health") && health >= 10)
+        {
+            other.gameObject.SetActive(false);
+        }
     }
 
     // jump 
