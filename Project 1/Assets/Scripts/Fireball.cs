@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class Fireball : MonoBehaviour
 {
     // speed
     public float speed = 2f;
@@ -42,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
         if (other.CompareTag("red"))
         {
             Destroy(gameObject);
-            redEnemy.UpdateDamage(1);
+            redEnemy.UpdateFireballDamage(1);
             Debug.Log("Collison Red");
         }
 
@@ -50,7 +50,7 @@ public class PlayerAttack : MonoBehaviour
         if (other.CompareTag("green"))
         {
             Destroy(gameObject);
-            greenEnemy.UpdateDamage(1);
+            greenEnemy.UpdateFireballDamage(1);
             Debug.Log("Collison Green");
         }
 
@@ -58,7 +58,7 @@ public class PlayerAttack : MonoBehaviour
         if (other.CompareTag("blue"))
         {
             Destroy(gameObject);
-            blueEnemy.UpdateDamage(1);
+            blueEnemy.UpdateFireballDamage(1);
             Debug.Log("Collison Blue");
         }
     }

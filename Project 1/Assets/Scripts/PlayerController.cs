@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     // fire projectile
     public PlayerAttack ProjectilePrefab;
+    public Fireball FireballPrefab;
     public Transform Launch;
 
 
@@ -83,6 +84,10 @@ public class PlayerController : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             Instantiate(ProjectilePrefab, Launch.position, transform.rotation);
+        }
+        if(Input.GetMouseButtonDown(1))
+        {
+            Instantiate(FireballPrefab, Launch.position, transform.rotation);
         }
     }
 

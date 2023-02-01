@@ -833,6 +833,9 @@ MonoBehaviour:
   CurrentDamage: 0
   damage: 0
   targetDamage: 3
+  CurrentFireballDamage: 0
+  FireballDamage: 0
+  targetFireballDamage: 0
 --- !u!1 &1256617239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1627,6 +1630,9 @@ MonoBehaviour:
   CurrentDamage: 0
   damage: 0
   targetDamage: 2
+  CurrentFireballDamage: 0
+  FireballDamage: 0
+  targetFireballDamage: 0
 --- !u!1 &1505152463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1738,6 +1744,7 @@ MonoBehaviour:
   health: 0
   Player: {fileID: 1538093234}
   ProjectilePrefab: {fileID: 7516261234460782611, guid: 0d81cda0eab0e2a4990d6a19055ec091, type: 3}
+  FireballPrefab: {fileID: 8290232050033542333, guid: 6c7c33e8c5ce3da4390bc049781e936a, type: 3}
   Launch: {fileID: 1505152464}
 --- !u!212 &1538093239
 SpriteRenderer:
@@ -1960,6 +1967,9 @@ MonoBehaviour:
   CurrentDamage: 0
   damage: 0
   targetDamage: 1
+  CurrentFireballDamage: 0
+  FireballDamage: 0
+  targetFireballDamage: 0
 --- !u!1 &2038895562
 GameObject:
   m_ObjectHideFlags: 0
