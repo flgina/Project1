@@ -21,14 +21,15 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI healthText;
     public int health;
 
-    // normal attack
-    public GameObject PlayerAttackPrefab;
-
     // animator
     Animator animator;
 
     // animation
     public GameObject Player;
+
+    // fire projectile
+    public PlayerAttack ProjectilePrefab;
+    public Transform Launch;
 
 
     // Start is called before the first frame update
@@ -78,10 +79,10 @@ public class PlayerController : MonoBehaviour
             speed = 3f;
         }
 
-        // normal attack
-        if (Input.GetMouseButtonDown(0))
+        // fire projectile
+        if(Input.GetMouseButtonDown(0))
         {
-            Launch();
+            Instantiate(ProjectilePrefab, Launch.position, transform.rotation);
         }
     }
 
@@ -126,14 +127,5 @@ public class PlayerController : MonoBehaviour
                 rigidbody2d.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
             }
         }
-    }
-
-    // normal attack
-    void Launch()
-    {
-        GameObject PlayerAttackObject = Instantiate(PlayerAttackPrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
-
-        PlayerAttack playerAttack = PlayerAttackObject.GetComponent<PlayerAttack>();
-        playerAttack.Launch(gameObject.transform.position, 300);
     }
 }

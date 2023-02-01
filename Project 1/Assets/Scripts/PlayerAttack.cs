@@ -4,24 +4,34 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    Rigidbody2D rigidbody2D;
+    public float speed = 2f;
+    // Red Enemy Script
+    RedEnemy redEnemy;
+    
+    // Green Enemy Script
+    GreenEnemy greenEnemy;
+
+    // Blue Enemy Script
+    BlueEnemy blueEnemy;
+
+    // damage
+    int damage = 0;
 
     void Awake()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
-    }
+        // red enemy
+        redEnemy = GameObject.FindObjectOfType<RedEnemy>();
 
-    public void Launch(Vector2 direction, float force)
-    {
-        rigidbody2D.AddForce(direction * force);
+        // green enemy
+        greenEnemy = GameObject.FindObjectOfType<GreenEnemy>();
+
+        // blue enemy
+        blueEnemy = GameObject.FindObjectOfType<BlueEnemy>();
     }
 
     void Update()
     {
-        if(transform.position.magnitude > 10.0f)
-        {
-            Destroy(gameObject);
-        }
+        transform.position += transform.right * Time.deltaTime * speed;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -30,6 +40,7 @@ public class PlayerAttack : MonoBehaviour
         if (other.CompareTag("red"))
         {
             Destroy(gameObject);
+            redEnemy.UpdateDamage(1);
             Debug.Log("Collison Red");
         }
 
@@ -37,6 +48,7 @@ public class PlayerAttack : MonoBehaviour
         if (other.CompareTag("green"))
         {
             Destroy(gameObject);
+            greenEnemy.UpdateDamage(1);
             Debug.Log("Collison Green");
         }
 
@@ -44,6 +56,7 @@ public class PlayerAttack : MonoBehaviour
         if (other.CompareTag("blue"))
         {
             Destroy(gameObject);
+            blueEnemy.UpdateDamage(1);
             Debug.Log("Collison Blue");
         }
     }
