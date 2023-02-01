@@ -63,7 +63,6 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2358891537271526270}
-  - {fileID: 6925745641445346528}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -170,19 +169,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: Crouching_Fireball
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: Fireball
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -288,22 +275,7 @@ AnimatorStateMachine:
     m_Position: {x: 340, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6622026830621573174}
-    m_Position: {x: 610, y: 180, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -602362381135739935}
-    m_Position: {x: 110, y: 210, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -693887268196882487}
-    m_Position: {x: 210, y: 270, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 1970819580330894505}
-    m_Position: {x: 300, y: 330, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -9036018089579955173}
-    m_Position: {x: 540, y: 320, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 6229653970655963575}
-    m_Position: {x: 580, y: 250, z: 0}
+    m_Position: {x: 590, y: 230, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
