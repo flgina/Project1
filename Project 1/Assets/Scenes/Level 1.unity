@@ -22996,8 +22996,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -31, y: 5}
-      - {x: -31, y: -8}
-      - {x: 130, y: -8}
+      - {x: -31, y: -7}
+      - {x: 130, y: -7}
       - {x: 130, y: 5}
 --- !u!4 &1490660576
 Transform:
