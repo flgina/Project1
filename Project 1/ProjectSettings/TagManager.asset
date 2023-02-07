@@ -10,6 +10,9 @@ TagManager:
   - Ground
   - PlayerAttack
   - health
+  - fireball
+  - fireballPickUp
+  - Projectile
   layers:
   - Default
   - TransparentFX

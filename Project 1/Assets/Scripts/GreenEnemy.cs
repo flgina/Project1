@@ -14,6 +14,20 @@ public class GreenEnemy : MonoBehaviour
     public int FireballDamage;
     public int targetFireballDamage;
 
+    // fireball pickup
+    public GameObject firballPickUp;
+
+    // life pickup
+    public GameObject health;
+
+    // player controller
+    PlayerController playerController;
+
+    void Awake()
+    {
+        playerController = GameObject.FindObjectOfType<PlayerController>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,22 +42,23 @@ public class GreenEnemy : MonoBehaviour
         targetFireballDamage = 1;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //
-    }
-
     // updates damage
     public void UpdateDamage(int damage)
     {
         CurrentDamage += damage;
         if (targetDamage == CurrentDamage)
         {
+            Debug.Log("red current damage: " + CurrentDamage);
+            Debug.Log("red target damage: " + targetDamage);
             Destroy(gameObject);
-            Debug.Log("damage = " + damage);
-            Debug.Log("CurrentDamage = " + CurrentDamage);
-            Debug.Log("targetDamage = " + targetDamage);
+            if (Random.value <= 0.7)
+            {
+                Instantiate(firballPickUp, transform.position, Quaternion.identity);
+            }
+            if (Random.value <= 0.3)
+            {
+                Instantiate(health, transform.position, Quaternion.identity);
+            }
         }
     }
     public void UpdateFireballDamage(int FireballDamage)
@@ -51,10 +66,17 @@ public class GreenEnemy : MonoBehaviour
         CurrentFireballDamage += FireballDamage;
         if (targetFireballDamage == CurrentFireballDamage)
         {
+            Debug.Log("red current damage: " + CurrentDamage);
+            Debug.Log("red target damage: " + targetDamage);
             Destroy(gameObject);
-            Debug.Log("damage = " + FireballDamage);
-            Debug.Log("CurrentDamage = " + CurrentFireballDamage);
-            Debug.Log("targetDamage = " + targetFireballDamage);
+            if (Random.value <= 0.7)
+            {
+                Instantiate(firballPickUp, transform.position, Quaternion.identity);
+            }
+            if (Random.value <= 0.3)
+            {
+                Instantiate(health, transform.position, Quaternion.identity);
+            }
         }
     }
 }

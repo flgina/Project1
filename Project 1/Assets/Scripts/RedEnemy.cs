@@ -14,6 +14,27 @@ public class RedEnemy : MonoBehaviour
     public int FireballDamage;
     public int targetFireballDamage;
 
+    // fireball pickup
+    public GameObject firballPickUp;
+
+    // life pickup
+    public GameObject health;
+
+    // player controller
+    PlayerController playerController;
+
+    // set movement
+    public float speed = 2f;
+    private float startTime;
+    private float journeyLength;
+    public Transform startMarker;
+    public Transform endMarker;
+
+    void Awake()
+    {
+        playerController = GameObject.FindObjectOfType<PlayerController>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +47,18 @@ public class RedEnemy : MonoBehaviour
         FireballDamage = 0;
         CurrentFireballDamage = 0;
         targetFireballDamage = 1;
+
+        // movement
+        startTime = Time.time;
+        journeyLength = Vector2.Distance(startMarker.position, endMarker.position);
     }
+
+    void Update()
+     {
+        float distCovered = (Time.time - startTime) * speed;
+        float fracJourney = distCovered / journeyLength;
+        transform.position = Vector3.Lerp(startMarker.position, endMarker.position, Mathf.PingPong (fracJourney, 1));
+     }
 
     // updates damage
     public void UpdateDamage(int damage)
@@ -34,10 +66,17 @@ public class RedEnemy : MonoBehaviour
         CurrentDamage += damage;
         if (targetDamage == CurrentDamage)
         {
+            Debug.Log("red current damage: " + CurrentDamage);
+            Debug.Log("red target damage: " + targetDamage);
             Destroy(gameObject);
-            Debug.Log("damage = " + damage);
-            Debug.Log("CurrentDamage = " + CurrentDamage);
-            Debug.Log("targetDamage = " + targetDamage);
+            if (Random.value <= 0.8)
+            {
+                Instantiate(firballPickUp, transform.position, Quaternion.identity);
+            }
+            if (Random.value <= 0.2)
+            {
+                Instantiate(health, transform.position, Quaternion.identity);
+            }
         }
     }
     public void UpdateFireballDamage(int FireballDamage)
@@ -45,10 +84,17 @@ public class RedEnemy : MonoBehaviour
         CurrentFireballDamage += FireballDamage;
         if (targetFireballDamage == CurrentFireballDamage)
         {
+            Debug.Log("red current damage: " + CurrentDamage);
+            Debug.Log("red target damage: " + targetDamage);
             Destroy(gameObject);
-            Debug.Log("damage = " + FireballDamage);
-            Debug.Log("CurrentDamage = " + CurrentFireballDamage);
-            Debug.Log("targetDamage = " + targetFireballDamage);
+            if (Random.value <= 0.8)
+            {
+                Instantiate(firballPickUp, transform.position, Quaternion.identity);
+            }
+            if (Random.value <= 0.2)
+            {
+                Instantiate(health, transform.position, Quaternion.identity);
+            }
         }
     }
 }

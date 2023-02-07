@@ -28,10 +28,33 @@ public class PlayerController : MonoBehaviour
     public GameObject Player;
 
     // fire projectile
-    public PlayerAttack ProjectilePrefab;
-    public Fireball FireballPrefab;
+    public GameObject ProjectilePrefab;
+    public GameObject FireballPrefab;
     public Transform Launch;
 
+    // fireball pick up
+    public int fireballPickUp = 0;
+
+    // Red Enemy Script
+    RedEnemy redEnemy;
+    
+    // Green Enemy Script
+    GreenEnemy greenEnemy;
+
+    // Blue Enemy Script
+    BlueEnemy blueEnemy;
+
+    void Awake()
+    {
+        // red enemy
+        redEnemy = GameObject.FindObjectOfType<RedEnemy>();
+
+        // green enemy
+        greenEnemy = GameObject.FindObjectOfType<GreenEnemy>();
+
+        // blue enemy
+        blueEnemy = GameObject.FindObjectOfType<BlueEnemy>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -81,13 +104,25 @@ public class PlayerController : MonoBehaviour
         }
 
         // fire projectile
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetKeyUp(KeyCode.C))
         {
             Instantiate(ProjectilePrefab, Launch.position, transform.rotation);
+            Destroy(GameObject.FindWithTag("Projectile"), 2);
         }
-        if(Input.GetMouseButtonDown(1))
+
+        // checks to see if enemy died
+        if (redEnemy.CurrentDamage == redEnemy.targetDamage)
         {
-            Instantiate(FireballPrefab, Launch.position, transform.rotation);
+            // check to see if have any fireball
+            if (fireballPickUp > 0)
+            {
+                if(Input.GetKeyUp(KeyCode.V))
+                {
+                    Instantiate(FireballPrefab, Launch.position, transform.rotation);
+                    fireballPickUp -= 1;
+                    Destroy(GameObject.FindWithTag("fireball"), 4);
+                }
+            }
         }
     }
 
@@ -137,12 +172,20 @@ public class PlayerController : MonoBehaviour
     // jump 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        // check ground
         if (collision.collider.tag == "Ground")
         {
             if (Input.GetKey(KeyCode.Space))
             {
                 rigidbody2d.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
             }
+        }
+
+        // fireball pickup
+        if (collision.collider.tag == "fireballPickUp")
+        {
+            fireballPickUp += 1;
+            Destroy(collision.gameObject);
         }
     }
 }

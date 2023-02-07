@@ -14,6 +14,20 @@ public class BlueEnemy : MonoBehaviour
     public int FireballDamage;
     public int targetFireballDamage;
 
+    // fireball pickup
+    public GameObject firballPickUp;
+
+    // life pickup
+    public GameObject health;
+
+    // player controller
+    PlayerController playerController;
+
+    void Awake()
+    {
+        playerController = GameObject.FindObjectOfType<PlayerController>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,12 +42,6 @@ public class BlueEnemy : MonoBehaviour
         targetFireballDamage = 2;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //
-    }
-
     // updates damage
     public void UpdateDamage(int damage)
     {
@@ -41,9 +49,14 @@ public class BlueEnemy : MonoBehaviour
         if (targetDamage == CurrentDamage)
         {
             Destroy(gameObject);
-            Debug.Log("damage = " + damage);
-            Debug.Log("CurrentDamage = " + CurrentDamage);
-            Debug.Log("targetDamage = " + targetDamage);
+            if (Random.value <= 0.6)
+            {
+                Instantiate(firballPickUp, transform.position, Quaternion.identity);
+            }
+            if (Random.value <= 0.4)
+            {
+                Instantiate(health, transform.position, Quaternion.identity);
+            }
         }
     }
     public void UpdateFireballDamage(int FireballDamage)
@@ -52,9 +65,14 @@ public class BlueEnemy : MonoBehaviour
         if (targetFireballDamage == CurrentFireballDamage)
         {
             Destroy(gameObject);
-            Debug.Log("damage = " + FireballDamage);
-            Debug.Log("CurrentDamage = " + CurrentFireballDamage);
-            Debug.Log("targetDamage = " + targetFireballDamage);
+            if (Random.value <= 0.6)
+            {
+                Instantiate(firballPickUp, transform.position, Quaternion.identity);
+            }
+            if (Random.value <= 0.4)
+            {
+                Instantiate(health, transform.position, Quaternion.identity);
+            }
         }
     }
 }
