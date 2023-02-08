@@ -36,24 +36,30 @@ public class PlayerController : MonoBehaviour
     public int fireballPickUp = 0;
 
     // Red Enemy Script
-    RedEnemy redEnemy;
+    RedCrab redCrab;
+    RedSnake redSnake;
     
     // Green Enemy Script
-    GreenEnemy greenEnemy;
+    GreenCrab greenCrab;
+    GreenSnake greenSnake;
 
     // Blue Enemy Script
-    BlueEnemy blueEnemy;
+    BlueCrab blueCrab;
+    BlueSnake blueSnake;
 
     void Awake()
     {
         // red enemy
-        redEnemy = GameObject.FindObjectOfType<RedEnemy>();
+        redSnake = GameObject.FindObjectOfType<RedSnake>();
+        redCrab = GameObject.FindObjectOfType<RedCrab>();
 
         // green enemy
-        greenEnemy = GameObject.FindObjectOfType<GreenEnemy>();
+        greenSnake = GameObject.FindObjectOfType<GreenSnake>();
+        greenCrab = GameObject.FindObjectOfType<GreenCrab>();
 
         // blue enemy
-        blueEnemy = GameObject.FindObjectOfType<BlueEnemy>();
+        blueSnake = GameObject.FindObjectOfType<BlueSnake>();
+        blueCrab = GameObject.FindObjectOfType<BlueCrab>();
     }
 
     // Start is called before the first frame update
@@ -110,18 +116,14 @@ public class PlayerController : MonoBehaviour
             Destroy(GameObject.FindWithTag("Projectile"), 2);
         }
 
-        // checks to see if enemy died
-        if (redEnemy.CurrentDamage == redEnemy.targetDamage)
+        // check to see if have any fireball
+        if (fireballPickUp > 0)
         {
-            // check to see if have any fireball
-            if (fireballPickUp > 0)
+            if(Input.GetKeyUp(KeyCode.V))
             {
-                if(Input.GetKeyUp(KeyCode.V))
-                {
-                    Instantiate(FireballPrefab, Launch.position, transform.rotation);
-                    fireballPickUp -= 1;
-                    Destroy(GameObject.FindWithTag("fireball"), 4);
-                }
+                Instantiate(FireballPrefab, Launch.position, transform.rotation);
+                fireballPickUp -= 1;
+                Destroy(GameObject.FindWithTag("fireball"), 4);
             }
         }
     }
@@ -132,25 +134,46 @@ public class PlayerController : MonoBehaviour
         rigidbody2d.AddForce(new Vector2(horizontal * speed, vertical * speed));  
     }
 
-    // check tag and do damage
+    // health
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // red
-        if (other.CompareTag("red"))
+        // red crab
+        if (other.CompareTag("RedCrab"))
         {
             health -= 1;
             healthText.text = "Health: " + health.ToString();
         }
 
-        // green
-        if (other.CompareTag("green"))
+        // green crab
+        if (other.CompareTag("GreenCrab"))
         {
             health -= 2;
             healthText.text = "Health: " + health.ToString();
         }
 
-        // blue
-        if (other.CompareTag("blue"))
+        // blue crab
+        if (other.CompareTag("BlueCrab"))
+        {
+            health -= 3;
+            healthText.text = "Health: " + health.ToString();
+        }
+
+        // red snake
+        if (other.CompareTag("RedSnake"))
+        {
+            health -= 1;
+            healthText.text = "Health: " + health.ToString();
+        }
+
+        // green snake
+        if (other.CompareTag("GreenSnake"))
+        {
+            health -= 2;
+            healthText.text = "Health: " + health.ToString();
+        }
+
+        // blue snake
+        if (other.CompareTag("BlueSnake"))
         {
             health -= 3;
             healthText.text = "Health: " + health.ToString();

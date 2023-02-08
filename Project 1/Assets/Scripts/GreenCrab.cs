@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlueEnemy : MonoBehaviour
+public class GreenCrab : MonoBehaviour
 {
     // set normal attack
     public int CurrentDamage;
@@ -23,6 +23,13 @@ public class BlueEnemy : MonoBehaviour
     // player controller
     PlayerController playerController;
 
+    // set movement
+    public float speed = 2f;
+    private float startTime;
+    private float journeyLength;
+    public Transform startMarker;
+    public Transform endMarker;
+
     void Awake()
     {
         playerController = GameObject.FindObjectOfType<PlayerController>();
@@ -34,13 +41,24 @@ public class BlueEnemy : MonoBehaviour
         // normal attack
         damage = 0;
         CurrentDamage = 0;
-        targetDamage = 3;
+        targetDamage = 2;
         
         // fireball
         FireballDamage = 0;
         CurrentFireballDamage = 0;
-        targetFireballDamage = 2;
+        targetFireballDamage = 1;
+
+        // movement
+        startTime = Time.time;
+        journeyLength = Vector2.Distance(startMarker.position, endMarker.position);
     }
+
+    void Update()
+     {
+        float distCovered = (Time.time - startTime) * speed;
+        float fracJourney = distCovered / journeyLength;
+        transform.position = Vector3.Lerp(startMarker.position, endMarker.position, Mathf.PingPong (fracJourney, 1));
+     }
 
     // updates damage
     public void UpdateDamage(int damage)
@@ -49,11 +67,11 @@ public class BlueEnemy : MonoBehaviour
         if (targetDamage == CurrentDamage)
         {
             Destroy(gameObject);
-            if (Random.value <= 0.6)
+            if (Random.value <= 0.7)
             {
                 Instantiate(firballPickUp, transform.position, Quaternion.identity);
             }
-            if (Random.value <= 0.4)
+            if (Random.value <= 0.3)
             {
                 Instantiate(health, transform.position, Quaternion.identity);
             }
@@ -65,11 +83,11 @@ public class BlueEnemy : MonoBehaviour
         if (targetFireballDamage == CurrentFireballDamage)
         {
             Destroy(gameObject);
-            if (Random.value <= 0.6)
+            if (Random.value <= 0.7)
             {
                 Instantiate(firballPickUp, transform.position, Quaternion.identity);
             }
-            if (Random.value <= 0.4)
+            if (Random.value <= 0.3)
             {
                 Instantiate(health, transform.position, Quaternion.identity);
             }

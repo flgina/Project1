@@ -8,27 +8,30 @@ public class PlayerAttack : MonoBehaviour
     public float speed = 2f;
 
     // Red Enemy Script
-    RedEnemy redEnemy;
+    RedCrab redCrab;
+    RedSnake redSnake;
     
     // Green Enemy Script
-    GreenEnemy greenEnemy;
+    GreenCrab greenCrab;
+    GreenSnake greenSnake;
 
     // Blue Enemy Script
-    BlueEnemy blueEnemy;
-
-    // damage
-    int damage = 0;
+    BlueCrab blueCrab;
+    BlueSnake blueSnake;
 
     void Awake()
     {
         // red enemy
-        redEnemy = GameObject.FindObjectOfType<RedEnemy>();
+        redSnake = GameObject.FindObjectOfType<RedSnake>();
+        redCrab = GameObject.FindObjectOfType<RedCrab>();
 
         // green enemy
-        greenEnemy = GameObject.FindObjectOfType<GreenEnemy>();
+        greenSnake = GameObject.FindObjectOfType<GreenSnake>();
+        greenCrab = GameObject.FindObjectOfType<GreenCrab>();
 
         // blue enemy
-        blueEnemy = GameObject.FindObjectOfType<BlueEnemy>();
+        blueSnake = GameObject.FindObjectOfType<BlueSnake>();
+        blueCrab = GameObject.FindObjectOfType<BlueCrab>();
     }
 
     void Update()
@@ -38,28 +41,46 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // red
-        if (other.CompareTag("red"))
+        // red crab
+        if (other.CompareTag("RedCrab"))
         {
             Destroy(gameObject);
-            redEnemy.UpdateDamage(1);
-            Debug.Log("Collison Red");
+            redCrab.UpdateDamage(1);
         }
 
-        // green
-        if (other.CompareTag("green"))
+        // green crab
+        if (other.CompareTag("GreenCrab"))
         {
             Destroy(gameObject);
-            greenEnemy.UpdateDamage(1);
-            Debug.Log("Collison Green");
+            greenCrab.UpdateDamage(1);
         }
 
-        // blue
-        if (other.CompareTag("blue"))
+        // blue crab
+        if (other.CompareTag("BlueCrab"))
         {
             Destroy(gameObject);
-            blueEnemy.UpdateDamage(1);
-            Debug.Log("Collison Blue");
+            blueCrab.UpdateDamage(1);
+        }
+
+        // red snake
+        if (other.CompareTag("RedSnake"))
+        {
+            Destroy(gameObject);
+            redSnake.UpdateDamage(1);
+        }
+
+        // green snake
+        if (other.CompareTag("GreenSnake"))
+        {
+            Destroy(gameObject);
+            greenSnake.UpdateDamage(1);
+        }
+
+        // blue snake
+        if (other.CompareTag("BlueSnake"))
+        {
+            Destroy(gameObject);
+            blueSnake.UpdateDamage(1);
         }
     }
 }

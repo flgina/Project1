@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GreenEnemy : MonoBehaviour
+public class RedCrab : MonoBehaviour
 {
     // set normal attack
     public int CurrentDamage;
@@ -23,6 +23,13 @@ public class GreenEnemy : MonoBehaviour
     // player controller
     PlayerController playerController;
 
+    // set movement
+    public float speed = 2f;
+    private float startTime;
+    private float journeyLength;
+    public Transform startMarker;
+    public Transform endMarker;
+
     void Awake()
     {
         playerController = GameObject.FindObjectOfType<PlayerController>();
@@ -34,13 +41,24 @@ public class GreenEnemy : MonoBehaviour
         // normal attack
         damage = 0;
         CurrentDamage = 0;
-        targetDamage = 2;
+        targetDamage = 1;
         
         // fireball
         FireballDamage = 0;
         CurrentFireballDamage = 0;
         targetFireballDamage = 1;
+
+        // movement
+        startTime = Time.time;
+        journeyLength = Vector2.Distance(startMarker.position, endMarker.position);
     }
+
+    void Update()
+     {
+        float distCovered = (Time.time - startTime) * speed;
+        float fracJourney = distCovered / journeyLength;
+        transform.position = Vector3.Lerp(startMarker.position, endMarker.position, Mathf.PingPong (fracJourney, 1));
+     }
 
     // updates damage
     public void UpdateDamage(int damage)
@@ -48,14 +66,12 @@ public class GreenEnemy : MonoBehaviour
         CurrentDamage += damage;
         if (targetDamage == CurrentDamage)
         {
-            Debug.Log("red current damage: " + CurrentDamage);
-            Debug.Log("red target damage: " + targetDamage);
             Destroy(gameObject);
-            if (Random.value <= 0.7)
+            if (Random.value <= 0.8)
             {
                 Instantiate(firballPickUp, transform.position, Quaternion.identity);
             }
-            if (Random.value <= 0.3)
+            if (Random.value <= 0.2)
             {
                 Instantiate(health, transform.position, Quaternion.identity);
             }
@@ -66,14 +82,12 @@ public class GreenEnemy : MonoBehaviour
         CurrentFireballDamage += FireballDamage;
         if (targetFireballDamage == CurrentFireballDamage)
         {
-            Debug.Log("red current damage: " + CurrentDamage);
-            Debug.Log("red target damage: " + targetDamage);
             Destroy(gameObject);
-            if (Random.value <= 0.7)
+            if (Random.value <= 0.8)
             {
                 Instantiate(firballPickUp, transform.position, Quaternion.identity);
             }
-            if (Random.value <= 0.3)
+            if (Random.value <= 0.2)
             {
                 Instantiate(health, transform.position, Quaternion.identity);
             }
