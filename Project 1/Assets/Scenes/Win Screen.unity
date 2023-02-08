@@ -287,7 +287,7 @@ RectTransform:
   m_GameObject: {fileID: 472503328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.844467, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1165633664}
@@ -311,15 +311,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.74882585, g: 0.45545566, b: 0.8396226, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b16a7263f33eda94b8fb7e8bf6ef8dab, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -438,8 +438,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 127.8}
-  m_SizeDelta: {x: 1007.3376, y: 202.7973}
+  m_AnchoredPosition: {x: 0, y: 119}
+  m_SizeDelta: {x: 1160.5791, y: 202.7973}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &628718751
 MonoBehaviour:
@@ -463,23 +463,23 @@ MonoBehaviour:
       m_Calls: []
   m_text: YOU WIN!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cb817aada0aecee4ca166e0287b23ecf, type: 2}
-  m_sharedMaterial: {fileID: 2562077980662762335, guid: cb817aada0aecee4ca166e0287b23ecf, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e705de7095fc3be4d996651cd1978a9e, type: 2}
+  m_sharedMaterial: {fileID: -6591485969014471428, guid: e705de7095fc3be4d996651cd1978a9e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294934216
-  m_fontColor: {r: 0.7830168, g: 0.495283, b: 1, a: 1}
-  m_enableVertexGradient: 0
+    rgba: 4294967291
+  m_fontColor: {r: 0.9843137, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 186af0e6b1fd818438ae9daee360bd3b, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -494,7 +494,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -659,7 +659,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -84.8}
+  m_AnchoredPosition: {x: 0, y: -84}
   m_SizeDelta: {x: 154.6514, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &907234259
@@ -791,8 +791,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 14.113409}
-  m_SizeDelta: {x: 1007.3376, y: 276.4207}
+  m_AnchoredPosition: {x: 0, y: 39.72}
+  m_SizeDelta: {x: 1007.3376, y: 158.4938}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &910564755
 MonoBehaviour:
@@ -814,7 +814,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Congratulations on defeating captain dragon!
+  m_text: You defeated captain dragon!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb817aada0aecee4ca166e0287b23ecf, type: 2}
   m_sharedMaterial: {fileID: 2562077980662762335, guid: cb817aada0aecee4ca166e0287b23ecf, type: 2}
@@ -823,16 +823,16 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294934216
-  m_fontColor: {r: 0.7830168, g: 0.495283, b: 1, a: 1}
-  m_enableVertexGradient: 0
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 186af0e6b1fd818438ae9daee360bd3b, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -841,8 +841,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
-  m_fontSizeBase: 80
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -877,7 +877,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 1.2935944, y: 0, z: 0, w: 0}
+  m_margin: {x: 1.2935944, y: 44.62102, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1165,7 +1165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -141.4}
+  m_AnchoredPosition: {x: 0, y: -134.4}
   m_SizeDelta: {x: 145.5315, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1859884513
