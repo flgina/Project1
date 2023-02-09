@@ -23,6 +23,16 @@ public class RedSnake : MonoBehaviour
     // player controller
     PlayerController playerController;
 
+    // attack player
+    public GameObject player;
+    private Transform playerPos;
+    private Vector2 currentPos;
+    public float distance;
+    public float speed = 3f;
+    float horizontal;
+    float vertical;
+    Rigidbody2D rigidbody2d;
+
     void Awake()
     {
         playerController = GameObject.FindObjectOfType<PlayerController>();
@@ -40,14 +50,42 @@ public class RedSnake : MonoBehaviour
         FireballDamage = 0;
         CurrentFireballDamage = 0;
         targetFireballDamage = 1;
+
+        // attack player
+        playerPos = player.GetComponent<Transform>();
+        currentPos = GetComponent<Transform>().position;
+        rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
+    // attack player
     void Update()
     {
-        // snake attack
-        if (Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.forward), 3, LayerMask.GetMask("player")))
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
+
+        if (Vector2.Distance(transform.position, playerPos.position) < distance)
         {
-            Debug.Log("Raycast has hit red snake");
+            transform.position = Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, currentPos, speed * Time.deltaTime);
+        }
+    }
+
+    void FixedUpdate()
+    {
+        // jump
+        rigidbody2d.AddForce(new Vector2(horizontal * speed, vertical * speed));  
+    }
+
+    // jump 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        // check ground
+        if (collision.collider.tag == "Ground")
+        {
+            rigidbody2d.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
         }
     }
 

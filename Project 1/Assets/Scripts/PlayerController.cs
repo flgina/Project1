@@ -128,12 +128,6 @@ public class PlayerController : MonoBehaviour
                 Destroy(GameObject.FindWithTag("fireball"), 4);
             }
         }
-
-        // snake attack
-        /*if (Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.forward), 3, LayerMask.GetMask("blueSnake")))
-        {
-            Debug.Log("Raycast has hit the object");
-        }*/
     }
 
     void FixedUpdate()
@@ -161,27 +155,6 @@ public class PlayerController : MonoBehaviour
 
         // blue crab
         if (other.CompareTag("BlueCrab"))
-        {
-            health -= 3;
-            healthText.text = "Health: " + health.ToString();
-        }
-
-        // red snake
-        if (other.CompareTag("RedSnake"))
-        {
-            health -= 1;
-            healthText.text = "Health: " + health.ToString();
-        }
-
-        // green snake
-        if (other.CompareTag("GreenSnake"))
-        {
-            health -= 2;
-            healthText.text = "Health: " + health.ToString();
-        }
-
-        // blue snake
-        if (other.CompareTag("BlueSnake"))
         {
             health -= 3;
             healthText.text = "Health: " + health.ToString();
@@ -217,6 +190,30 @@ public class PlayerController : MonoBehaviour
         {
             fireballPickUp += 1;
             Destroy(collision.gameObject);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // red snake
+        if (collision.gameObject.tag == "RedSnake")
+        {
+            health -= 1;
+            healthText.text = "Health: " + health.ToString();
+        }
+
+        // green snake
+        if (collision.gameObject.tag ==  "GreenSnake")
+        {
+            health -= 2;
+            healthText.text = "Health: " + health.ToString();
+        }
+
+        // blue snake
+        if (collision.gameObject.tag == "BlueSnake")
+        {
+            health -= 3;
+            healthText.text = "Health: " + health.ToString();
         }
     }
 }

@@ -623,6 +623,7 @@ GameObject:
   - component: {fileID: 673572310}
   - component: {fileID: 673572309}
   - component: {fileID: 673572312}
+  - component: {fileID: 673572313}
   m_Layer: 0
   m_Name: red_snake
   m_TagString: RedSnake
@@ -640,7 +641,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 2.8938227, y: -3.0343008}
@@ -743,6 +744,30 @@ MonoBehaviour:
   targetFireballDamage: 1
   firballPickUp: {fileID: 3911080032744438034, guid: ee151071aa83a9a45925fa74b706f95e, type: 3}
   health: {fileID: 4696255797021230064, guid: 754481bf077ea6b42bf01e234ba20a6d, type: 3}
+  player: {fileID: 1538093234}
+  distance: 10
+  speed: 3
+--- !u!50 &673572313
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673572307}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &953815993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,6 +1027,7 @@ GameObject:
   - component: {fileID: 1128657782}
   - component: {fileID: 1128657781}
   - component: {fileID: 1128657784}
+  - component: {fileID: 1128657785}
   m_Layer: 0
   m_Name: green_snake
   m_TagString: GreenSnake
@@ -1019,7 +1045,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 1.7419143, y: -5.150988}
@@ -1122,6 +1148,30 @@ MonoBehaviour:
   targetFireballDamage: 1
   firballPickUp: {fileID: 3911080032744438034, guid: ee151071aa83a9a45925fa74b706f95e, type: 3}
   health: {fileID: 4696255797021230064, guid: 754481bf077ea6b42bf01e234ba20a6d, type: 3}
+  player: {fileID: 1538093234}
+  distance: 10
+  speed: 3
+--- !u!50 &1128657785
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128657779}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1256617239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1856,7 +1906,8 @@ GameObject:
   - component: {fileID: 1415439399}
   - component: {fileID: 1415439398}
   - component: {fileID: 1415439401}
-  m_Layer: 0
+  - component: {fileID: 1415439402}
+  m_Layer: 6
   m_Name: blue_snake
   m_TagString: BlueSnake
   m_Icon: {fileID: 0}
@@ -1873,7 +1924,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 1.7640388, y: -5.009864}
@@ -1949,7 +2000,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415439396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.03, y: -2.22, z: 0}
+  m_LocalPosition: {x: -3.03, y: -2.19, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1976,6 +2027,30 @@ MonoBehaviour:
   targetFireballDamage: 0
   firballPickUp: {fileID: 3911080032744438034, guid: ee151071aa83a9a45925fa74b706f95e, type: 3}
   health: {fileID: 4696255797021230064, guid: 754481bf077ea6b42bf01e234ba20a6d, type: 3}
+  player: {fileID: 1538093234}
+  distance: 10
+  speed: 3
+--- !u!50 &1415439402
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415439396}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1505152463
 GameObject:
   m_ObjectHideFlags: 0
@@ -2081,7 +2156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b69687358f36cc448a50a4e1304a9aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 5
   crouchHeight: 0
   healthText: {fileID: 953815995}
   health: 0
