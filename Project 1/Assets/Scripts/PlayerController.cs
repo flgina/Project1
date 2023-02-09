@@ -144,6 +144,7 @@ public class PlayerController : MonoBehaviour
         {
             health -= 1;
             healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
         }
 
         // green crab
@@ -151,6 +152,7 @@ public class PlayerController : MonoBehaviour
         {
             health -= 2;
             healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
         }
 
         // blue crab
@@ -158,6 +160,7 @@ public class PlayerController : MonoBehaviour
         {
             health -= 3;
             healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
         }
 
         // health
@@ -200,6 +203,7 @@ public class PlayerController : MonoBehaviour
         {
             health -= 1;
             healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
         }
 
         // green snake
@@ -207,6 +211,7 @@ public class PlayerController : MonoBehaviour
         {
             health -= 2;
             healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
         }
 
         // blue snake
@@ -214,6 +219,7 @@ public class PlayerController : MonoBehaviour
         {
             health -= 3;
             healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
         }
     }
 }
