@@ -47,6 +47,9 @@ public class PlayerController : MonoBehaviour
     BlueCrab blueCrab;
     BlueSnake blueSnake;
 
+    // Boss Script
+    Boss boss;
+
     Vector2 lookDirection = new Vector2(1,0);
 
     void Awake()
@@ -62,6 +65,9 @@ public class PlayerController : MonoBehaviour
         // blue enemy
         blueSnake = GameObject.FindObjectOfType<BlueSnake>();
         blueCrab = GameObject.FindObjectOfType<BlueCrab>();
+
+        // boss enemy
+        boss = GameObject.FindObjectOfType<Boss>();
     }
 
     // Start is called before the first frame update
@@ -89,6 +95,7 @@ public class PlayerController : MonoBehaviour
         // move left
         if (Input.GetKey(KeyCode.A))
         {
+            speed = 3f;
             gameObject.transform.position += Vector3.left * speed * Time.deltaTime;
         }
 
@@ -163,6 +170,13 @@ public class PlayerController : MonoBehaviour
             rigidbody2d.AddForce(transform.up * 400);
         }
 
+        if (other.CompareTag("BossAttack"))
+        {
+            health -= 1;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+
         // health
         if (other.CompareTag("health") && health < 10)
         {
@@ -218,6 +232,14 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "BlueSnake")
         {
             health -= 3;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+
+        // boss
+        if (collision.gameObject.tag == "Boss")
+        {
+            health -= 1;
             healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }

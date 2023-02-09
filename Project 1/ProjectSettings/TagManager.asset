@@ -19,6 +19,8 @@ TagManager:
   - RedSnake
   - GreenSnake
   - BlueSnake
+  - Boss
+  - BossAttack
   layers:
   - Default
   - TransparentFX

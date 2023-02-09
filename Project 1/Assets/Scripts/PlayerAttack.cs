@@ -19,6 +19,9 @@ public class PlayerAttack : MonoBehaviour
     BlueCrab blueCrab;
     BlueSnake blueSnake;
 
+    // Boss Script
+    Boss boss;
+
     void Awake()
     {
         // red enemy
@@ -32,6 +35,9 @@ public class PlayerAttack : MonoBehaviour
         // blue enemy
         blueSnake = GameObject.FindObjectOfType<BlueSnake>();
         blueCrab = GameObject.FindObjectOfType<BlueCrab>();
+
+        // boss enemy
+        boss = GameObject.FindObjectOfType<Boss>();
     }
 
     void Update()
@@ -81,6 +87,20 @@ public class PlayerAttack : MonoBehaviour
         {
             Destroy(gameObject);
             blueSnake.UpdateDamage(1);
+        }
+
+        // boss
+        if (other.CompareTag("Boss"))
+        {
+            Destroy(gameObject);
+            boss.UpdateDamage(1);
+        }
+
+        // boss attack
+        if (other.CompareTag("BossAttack"))
+        {
+            Destroy(gameObject);
+            boss.UpdateDamage(1);
         }
     }
 }
