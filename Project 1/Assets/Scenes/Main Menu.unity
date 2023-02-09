@@ -319,17 +319,17 @@ MonoBehaviour:
   m_text: 'Use a and d to move, also use s to crouch and the space bar to jump!
 
 
-    Left
-    click on the mouse to attack! You can also attack using fireballs (insert button
-    here), fireballs can sometimes be replenished by defeating enemies.
+    Press
+    Q to attack! You can also attack using fireballs by pressing  E, fireballs can
+    sometimes be replenished after defeating enemies.
 
 
-    If
-    you get hurt, you can sometimes find health pickups by defeating enemies.
+    If you get hurt, you
+    can sometimes find health pickups by defeating enemies.
 
 
-    Defeat
-    captain dragon to win!
+    Defeat captain
+    dragon to win!
 
 
 '
@@ -350,7 +350,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 327d0a2646c66024d865f4ba0ff97d91, type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 186af0e6b1fd818438ae9daee360bd3b, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -1232,7 +1232,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 186af0e6b1fd818438ae9daee360bd3b, type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 327d0a2646c66024d865f4ba0ff97d91, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -1988,8 +1988,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Character Artist: Vincent Fields\tEnvironment Artist: Avery Carpenter\tTech:
-    Gabriel Fernandez\tCode: Gina LOfoco"
+  m_text: "Character Artist: Vincent Fields\t    Environment Artist: Avery Carpenter\tTech:
+    Gabriel Fernandez    \tCode: Gina Lofoco"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb817aada0aecee4ca166e0287b23ecf, type: 2}
   m_sharedMaterial: {fileID: 2562077980662762335, guid: cb817aada0aecee4ca166e0287b23ecf, type: 2}
@@ -2007,7 +2007,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 327d0a2646c66024d865f4ba0ff97d91, type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 186af0e6b1fd818438ae9daee360bd3b, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -2366,7 +2366,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 186af0e6b1fd818438ae9daee360bd3b, type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 327d0a2646c66024d865f4ba0ff97d91, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
