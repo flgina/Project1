@@ -743,9 +743,6 @@ MonoBehaviour:
   targetFireballDamage: 1
   firballPickUp: {fileID: 3911080032744438034, guid: ee151071aa83a9a45925fa74b706f95e, type: 3}
   health: {fileID: 4696255797021230064, guid: 754481bf077ea6b42bf01e234ba20a6d, type: 3}
-  player: {fileID: 1538093234}
-  redsnake: {fileID: 673572307}
-  speed: 0
 --- !u!1 &953815993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,9 +1122,6 @@ MonoBehaviour:
   targetFireballDamage: 1
   firballPickUp: {fileID: 3911080032744438034, guid: ee151071aa83a9a45925fa74b706f95e, type: 3}
   health: {fileID: 4696255797021230064, guid: 754481bf077ea6b42bf01e234ba20a6d, type: 3}
-  player: {fileID: 1538093234}
-  greensnake: {fileID: 1128657779}
-  speed: 0
 --- !u!1 &1256617239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1982,9 +1976,6 @@ MonoBehaviour:
   targetFireballDamage: 0
   firballPickUp: {fileID: 3911080032744438034, guid: ee151071aa83a9a45925fa74b706f95e, type: 3}
   health: {fileID: 4696255797021230064, guid: 754481bf077ea6b42bf01e234ba20a6d, type: 3}
-  player: {fileID: 1538093234}
-  bluesnake: {fileID: 1415439396}
-  speed: 0
 --- !u!1 &1505152463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1994,7 +1985,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1505152464}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Launch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2030,7 +2021,7 @@ GameObject:
   - component: {fileID: 1538093236}
   - component: {fileID: 1538093235}
   - component: {fileID: 1538093241}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}

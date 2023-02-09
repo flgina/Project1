@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
     BlueCrab blueCrab;
     BlueSnake blueSnake;
 
+    Vector2 lookDirection = new Vector2(1,0);
+
     void Awake()
     {
         // red enemy
@@ -126,6 +128,12 @@ public class PlayerController : MonoBehaviour
                 Destroy(GameObject.FindWithTag("fireball"), 4);
             }
         }
+
+        // snake attack
+        /*if (Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.forward), 3, LayerMask.GetMask("blueSnake")))
+        {
+            Debug.Log("Raycast has hit the object");
+        }*/
     }
 
     void FixedUpdate()

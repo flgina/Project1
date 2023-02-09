@@ -23,11 +23,7 @@ public class BlueSnake : MonoBehaviour
     // player controller
     PlayerController playerController;
 
-    // attack
-    public GameObject player;
-    public GameObject bluesnake;
-    private Transform playerPos;
-    public  float speed;
+    // attack player
 
     void Awake()
     {
@@ -46,19 +42,14 @@ public class BlueSnake : MonoBehaviour
         FireballDamage = 0;
         CurrentFireballDamage = 0;
         targetFireballDamage = 2;
-
-        // get player position
-        playerPos = player.GetComponent<Transform>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // checks if distance from player
-        if (((bluesnake.transform.position) - (playerPos.position)).magnitude < 10f)
+        // snake attack
+        if (Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.forward), 3, LayerMask.GetMask("player")))
         {
-            // move
-            transform.position = Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
+            Debug.Log("Raycast has hit blue snake");
         }
     }
 
