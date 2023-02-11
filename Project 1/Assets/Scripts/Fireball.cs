@@ -45,62 +45,55 @@ public class Fireball : MonoBehaviour
         transform.position += transform.right * Time.deltaTime * speed;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        // red crab
-        if (other.CompareTag("RedCrab"))
+        // boss
+        if (collision.gameObject.tag == "Boss")
         {
             Destroy(gameObject);
-            redCrab.UpdateFireballDamage(1);
-        }
-
-        // green crab
-        if (other.CompareTag("GreenCrab"))
-        {
-            Destroy(gameObject);
-            greenCrab.UpdateFireballDamage(1);
-        }
-
-        // blue crab
-        if (other.CompareTag("BlueCrab"))
-        {
-            Destroy(gameObject);
-            blueCrab.UpdateFireballDamage(1);
+            boss.UpdateFireballDamage(1);
         }
 
         // red snake
-        if (other.CompareTag("RedSnake"))
+        if (collision.gameObject.tag == "RedSnake")
         {
             Destroy(gameObject);
             redSnake.UpdateFireballDamage(1);
         }
 
         // green snake
-        if (other.CompareTag("GreenSnake"))
+        if (collision.gameObject.tag == "GreenSnake")
         {
             Destroy(gameObject);
             greenSnake.UpdateFireballDamage(1);
         }
 
         // blue snake
-        if (other.CompareTag("BlueSnake"))
+        if (collision.gameObject.tag == "BlueSnake")
         {
             Destroy(gameObject);
             blueSnake.UpdateFireballDamage(1);
         }
 
-        // boss
-        if (other.CompareTag("Boss"))
+        // red crab
+        if (collision.gameObject.tag == "RedCrab")
         {
             Destroy(gameObject);
-            boss.UpdateFireballDamage(1);
+            redCrab.UpdateFireballDamage(1);
         }
 
-        // boss attack
-        if (other.CompareTag("BossAttack"))
+        // green crab
+        if (collision.gameObject.tag == "GreenCrab")
         {
             Destroy(gameObject);
-            boss.UpdateDamage(1);
+            greenCrab.UpdateFireballDamage(1);
+        }
+
+        // blue crab
+        if (collision.gameObject.tag == "BlueCrab")
+        {
+            Destroy(gameObject);
+            blueCrab.UpdateFireballDamage(1);
         }
     }
 }

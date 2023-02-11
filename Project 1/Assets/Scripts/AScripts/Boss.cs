@@ -24,26 +24,27 @@ public class Boss : MonoBehaviour
     PlayerController playerController;
 
     // attack player
-    public GameObject player;
-    private Transform playerPos;
-    private Vector2 currentPos;
-    public float distance;
-    public float speed = 3f;
-    float horizontal;
-    float vertical;
-    Rigidbody2D rigidbody2d;
     public GameObject bossAttack;
     public float fire;
     float nextFire;
     public Transform Launch;
 
-    void Awake()
+    // animation / movement
+    private Animator anim;
+    Rigidbody2D rigidbody2d;
+    private Transform playerPos;
+
+    public float speed = 3f;
+    float horizontal;
+    float vertical; 
+   public bool facingRight = false;
+
+   void Awake()
     {
         playerController = GameObject.FindObjectOfType<PlayerController>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         // normal attack
         damage = 0;
@@ -56,44 +57,32 @@ public class Boss : MonoBehaviour
         targetFireballDamage = 15;
 
         // attack player
-        playerPos = player.GetComponent<Transform>();
-        currentPos = GetComponent<Transform>().position;
+        playerController = GameObject.FindObjectOfType<PlayerController>();
+        playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rigidbody2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         fire = 10f;
         nextFire = Time.time;
     }
-
     // attack player
     void Update()
     {
         CheckTime();
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+        if (playerController.transform.position.x < gameObject.transform.position.x && facingRight)
+            Flip ();
+        if (playerController.transform.position.x > gameObject.transform.position.x && !facingRight)
+            Flip ();
 
-        if (Vector2.Distance(transform.position, playerPos.position) < distance)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
-        }
-        else
-        {
-            transform.position = Vector2.MoveTowards(transform.position, currentPos, speed * Time.deltaTime);
-        }
     }
 
-    void FixedUpdate()
-    {
-        // jump
-        rigidbody2d.AddForce(new Vector2(horizontal * speed, vertical * speed));  
-    }
-
-    // jump 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        // check ground
-        if (collision.collider.tag == "Ground")
-        {
-            rigidbody2d.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
-        }
+    void Flip () {
+        //here your flip funktion, as example
+        facingRight = !facingRight;
+        Vector3 tmpScale = gameObject.transform.localScale;
+        tmpScale.x *= -1;
+        gameObject.transform.localScale = tmpScale;
     }
 
     // fire
@@ -112,6 +101,8 @@ public class Boss : MonoBehaviour
         CurrentDamage += damage;
         if (targetDamage == CurrentDamage)
         {
+            Debug.Log("Target: " + targetDamage);
+            Debug.Log("Current: " + CurrentDamage);
             Destroy(gameObject);
             Instantiate(firballPickUp, transform.position, Quaternion.identity);
             Instantiate(health, transform.position, Quaternion.identity);

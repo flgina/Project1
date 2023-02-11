@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4024040497117265458}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.91, y: 1.22, z: 0.151581}
+  m_LocalPosition: {x: 3.73, y: 1.22, z: 0.151581}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4024040498195053363}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.07, y: -1.43, z: 0.15158096}
+  m_LocalPosition: {x: 3.76, y: -1.43, z: 0.15158096}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 4024040499005047243}
   - component: {fileID: 4024040499005047242}
   - component: {fileID: 4024040499005047237}
-  - component: {fileID: 4024040499005047239}
+  - component: {fileID: 2624244287862451905}
   - component: {fileID: 4024040499005047233}
   - component: {fileID: 4024040499005047232}
   m_Layer: 0
@@ -194,7 +194,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4024040499005047239
+--- !u!114 &2624244287862451905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,15 +203,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4024040499005047241}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e565ff5d7f5bfd44695bc5ec4f548d5b, type: 3}
+  m_Script: {fileID: 11500000, guid: b69687358f36cc448a50a4e1304a9aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3
   jumpAmount: 30
   facingRight: 1
-  playerCharacter: {fileID: 4024040499005047241}
+  healthText: {fileID: 0}
+  health: 0
   projectilePrefab: {fileID: 8517719243838585014, guid: 581415e01417799429df919d3820d74c, type: 3}
-  fireballPrefab: {fileID: 4321585603598298127, guid: 76ba59e9fcbcacd4db87fba10c10bab9, type: 3}
+  FireballPrefab: {fileID: 4321585603598298127, guid: 76ba59e9fcbcacd4db87fba10c10bab9, type: 3}
   Projectilelaunch: {fileID: 4024040497117265459}
   Crouchlaunch: {fileID: 4024040498195053356}
   fireballPickUp: 0

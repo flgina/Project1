@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile2 : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
     private PlayerController playerController;

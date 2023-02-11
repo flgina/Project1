@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 671710882204082502}
   - component: {fileID: 6991199033698500262}
   - component: {fileID: 1045363094982806135}
-  - component: {fileID: 4593092968714783581}
+  - component: {fileID: 7302428720185037425}
+  - component: {fileID: 4607596941916649223}
   m_Layer: 0
   m_Name: hook
-  m_TagString: Untagged
+  m_TagString: BossAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,13 +102,13 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &4593092968714783581
+  m_Constraints: 4
+--- !u!114 &7302428720185037425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,6 +117,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 4644762316676032202}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 041d5dc9072b51843b49196d464cc83a, type: 3}
+  m_Script: {fileID: 11500000, guid: d090f16b872b21d43be391ed832c7fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &4607596941916649223
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4644762316676032202}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.042024422, y: 0.020011917}
+  m_Size: {x: 0.9778758, y: 1.0517372}
+  m_Direction: 0

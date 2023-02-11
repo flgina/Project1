@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 23b6ee533a3ec1348a77cabedb7dcf1c
+guid: de11c4df6049c3d40ac6872c22d27a6f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,85 +128,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hearts_0
+      name: beachballproejctile_0
       rect:
         serializedVersion: 2
-        x: 78
-        y: 373
-        width: 185
-        height: 162
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 142
+        y: 302
+        width: 158
+        height: 117
+      alignment: 9
+      pivot: {x: 0.43071988, y: 0.4801229}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2709116fa5bd1d549b76f3dbf10e7d1d
-      internalID: 1268567626
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hearts_1
-      rect:
-        serializedVersion: 2
-        x: 266
-        y: 373
-        width: 185
-        height: 162
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 381c5ba3b7d73f449bd0da37abc03caa
-      internalID: -600189397
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hearts_2
-      rect:
-        serializedVersion: 2
-        x: 457
-        y: 373
-        width: 185
-        height: 162
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a4067937e8095384e8e0d366d8facded
-      internalID: -462363737
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hearts_3
-      rect:
-        serializedVersion: 2
-        x: 291
-        y: 129
-        width: 157
-        height: 156
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a8e50254999174647a26ec9e4312e082
-      internalID: 2058753708
+      spriteID: 7458c2b201502964ba9f2bf8526cea84
+      internalID: -248379791
       vertices: []
       indices: 
       edges: []
@@ -222,10 +159,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hearts_2: -462363737
-      hearts_3: 2058753708
-      hearts_1: -600189397
-      hearts_0: 1268567626
+      beachballproejctile_0: -248379791
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

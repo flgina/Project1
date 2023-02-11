@@ -31,9 +31,4 @@ public class BossAttack : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    void Update()
-    {
-        //
-    }
 }

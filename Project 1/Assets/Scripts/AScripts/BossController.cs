@@ -7,7 +7,7 @@ public class BossController : MonoBehaviour
   
 
       // set normal attack
-    public int CurrentDamage;
+    /*public int CurrentDamage;
     public int damage;
     public int targetDamage;
 
@@ -93,6 +93,6 @@ public class BossController : MonoBehaviour
             Instantiate(bossAttack, Launch.position, Quaternion.identity);
             nextFire = Time.time + fire;
         }
-    }
+    }*/
 
 }
