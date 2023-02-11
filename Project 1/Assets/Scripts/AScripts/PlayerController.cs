@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
     float horizontal;
@@ -14,6 +16,10 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
     private float yInput;
+    
+    // health
+    public TextMeshProUGUI healthText;
+    public int health;
 
     public bool facingRight = true; 
     bool isMoving = false; 
@@ -32,16 +38,53 @@ public class PlayerMovement : MonoBehaviour
     public GameObject projectilePrefab;
     public GameObject fireballPrefab;
     public Transform Projectilelaunch;
-    public Transform Crouchlaunch;
+  //  public Transform Crouchlaunch;
 
     // fireball pick up
     public int fireballPickUp = 0;
+
+    // Red Enemy Script
+    RedCrab redCrab;
+    RedSnake redSnake;
+
+    // Green Enemy Script
+    GreenCrab greenCrab;
+    GreenSnake greenSnake;
+
+    // Blue Enemy Script
+    BlueCrab blueCrab;
+    BlueSnake blueSnake;
+
+    // Boss Script
+    Boss boss;
+
+    void Awake()
+    {
+        // red enemy
+        redSnake = GameObject.FindObjectOfType<RedSnake>();
+        redCrab = GameObject.FindObjectOfType<RedCrab>();
+
+        // green enemy
+        greenSnake = GameObject.FindObjectOfType<GreenSnake>();
+        greenCrab = GameObject.FindObjectOfType<GreenCrab>();
+
+        // blue enemy
+        blueSnake = GameObject.FindObjectOfType<BlueSnake>();
+        blueCrab = GameObject.FindObjectOfType<BlueCrab>();
+
+        // boss enemy
+        boss = GameObject.FindObjectOfType<Boss>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+         // health
+        health = 10;
+        healthText.text = "Health: " + health.ToString();
     
     }
 
@@ -151,6 +194,66 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // red crab
+        if (other.CompareTag("RedCrab"))
+        {
+            health -= 1;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+
+        // green crab
+        if (other.CompareTag("GreenCrab"))
+        {
+            health -= 2;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+
+        // blue crab
+        if (other.CompareTag("BlueCrab"))
+        {
+            health -= 3;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+
+        if (other.CompareTag("BossAttack"))
+        {
+            health -= 1;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+
+        // health
+        if (other.CompareTag("health") && health < 10)
+        {
+            health += 2;
+            healthText.text = "Health: " + health.ToString();
+            other.gameObject.SetActive(false);
+        }
+        if (other.CompareTag("health") && health >= 10)
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
+
+
+
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+     
+        // fireball pickup
+        if (collision.collider.tag == "fireballPickUp")
+        {
+            fireballPickUp += 1;
+            Destroy(collision.gameObject);
+        }
+    }
+
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -160,9 +263,38 @@ public class PlayerMovement : MonoBehaviour
         isJumping = false;
         animator.SetBool("Jump", false);
         }
+         // red snake
+        if (other.gameObject.CompareTag("RedSnake"))
+        {
+            health -= 1;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
 
+        // green snake
+        if (other.gameObject.CompareTag( "GreenSnake"))
+        {
+            health -= 2;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+
+        // blue snake
+        if (other.gameObject.CompareTag( "BlueSnake"))
+        {
+            health -= 3;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+
+        // boss
+        if (other.gameObject.CompareTag("Boss"))
+        {
+            health -= 1;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
     }
-
         
     void Launch()
     {
@@ -183,5 +315,6 @@ public class PlayerMovement : MonoBehaviour
 
     } 
 
+   
 
 }
