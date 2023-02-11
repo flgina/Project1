@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-       // set normal attack
+    // set normal attack
     public int CurrentDamage;
     public int damage;
     public int targetDamage;
@@ -22,36 +22,29 @@ public class Boss : MonoBehaviour
 
     // player controller
     PlayerController playerController;
-    private PlayerController player;
 
     // attack player
-
+    public GameObject player;
+    private Transform playerPos;
+    private Vector2 currentPos;
+    public float distance;
+    public float speed = 3f;
+    float horizontal;
+    float vertical;
+    Rigidbody2D rigidbody2d;
     public GameObject bossAttack;
     public float fire;
     float nextFire;
     public Transform Launch;
-
-   
-    private Animator anim;
-    Rigidbody2D rigidbody2d;
-    private Transform playerPos;
-  
-
-    public float speed = 3f;
-    float horizontal;
-    float vertical;
-   
- 
-   public bool facingRight = false;
 
     void Awake()
     {
         playerController = GameObject.FindObjectOfType<PlayerController>();
     }
 
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-
         // normal attack
         damage = 0;
         CurrentDamage = 0;
@@ -62,40 +55,48 @@ public class Boss : MonoBehaviour
         CurrentFireballDamage = 0;
         targetFireballDamage = 15;
 
+        // attack player
+        playerPos = player.GetComponent<Transform>();
+        currentPos = GetComponent<Transform>().position;
+        rigidbody2d = GetComponent<Rigidbody2D>();
         fire = 10f;
         nextFire = Time.time;
-
-        player = GameObject.FindObjectOfType<PlayerController>();
-        playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        rigidbody2d = GetComponent<Rigidbody2D>();
- 
-        anim = GetComponent<Animator>();
-  
     }
+
     // attack player
     void Update()
     {
         CheckTime();
-
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        if (player.transform.position.x < gameObject.transform.position.x && facingRight)
-            Flip ();
-        if (player.transform.position.x > gameObject.transform.position.x && !facingRight)
-            Flip ();
 
+        if (Vector2.Distance(transform.position, playerPos.position) < distance)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, currentPos, speed * Time.deltaTime);
+        }
     }
 
-    void Flip () 
+    void FixedUpdate()
     {
-        //here your flip funktion, as example
-        facingRight = !facingRight;
-        Vector3 tmpScale = gameObject.transform.localScale;
-        tmpScale.x *= -1;
-        gameObject.transform.localScale = tmpScale;
+        // jump
+        rigidbody2d.AddForce(new Vector2(horizontal * speed, vertical * speed));  
     }
 
-        // fire
+    // jump 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        // check ground
+        if (collision.collider.tag == "Ground")
+        {
+            rigidbody2d.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
+        }
+    }
+
+    // fire
     void CheckTime()
     {
         if (Time.time > nextFire)
