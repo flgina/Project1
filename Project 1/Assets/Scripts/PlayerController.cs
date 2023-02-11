@@ -21,15 +21,54 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI healthText;
     public int health;
 
-    // normal attack
-    public GameObject PlayerAttackPrefab;
-
     // animator
     Animator animator;
 
     // animation
     public GameObject Player;
 
+    // fire projectile
+    public GameObject ProjectilePrefab;
+    public GameObject FireballPrefab;
+    public Transform Launch;
+
+    // fireball pick up
+    public int fireballPickUp = 0;
+
+    // Red Enemy Script
+    RedCrab redCrab;
+    RedSnake redSnake;
+    
+    // Green Enemy Script
+    GreenCrab greenCrab;
+    GreenSnake greenSnake;
+
+    // Blue Enemy Script
+    BlueCrab blueCrab;
+    BlueSnake blueSnake;
+
+    // Boss Script
+    Boss boss;
+
+    Vector2 lookDirection = new Vector2(1,0);
+
+    void Awake()
+    {
+        // red enemy
+        redSnake = GameObject.FindObjectOfType<RedSnake>();
+        redCrab = GameObject.FindObjectOfType<RedCrab>();
+
+        // green enemy
+        greenSnake = GameObject.FindObjectOfType<GreenSnake>();
+        greenCrab = GameObject.FindObjectOfType<GreenCrab>();
+
+        // blue enemy
+        blueSnake = GameObject.FindObjectOfType<BlueSnake>();
+        blueCrab = GameObject.FindObjectOfType<BlueCrab>();
+
+        // boss enemy
+        boss = GameObject.FindObjectOfType<Boss>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +95,7 @@ public class PlayerController : MonoBehaviour
         // move left
         if (Input.GetKey(KeyCode.A))
         {
+            speed = 3f;
             gameObject.transform.position += Vector3.left * speed * Time.deltaTime;
         }
 
@@ -78,10 +118,22 @@ public class PlayerController : MonoBehaviour
             speed = 3f;
         }
 
-        // normal attack
-        if (Input.GetMouseButtonDown(0))
+        // fire projectile
+        if(Input.GetKeyUp(KeyCode.C))
         {
-            Launch();
+            Instantiate(ProjectilePrefab, Launch.position, transform.rotation);
+            Destroy(GameObject.FindWithTag("Projectile"), 2);
+        }
+
+        // check to see if have any fireball
+        if (fireballPickUp > 0)
+        {
+            if(Input.GetKeyUp(KeyCode.V))
+            {
+                Instantiate(FireballPrefab, Launch.position, transform.rotation);
+                fireballPickUp -= 1;
+                Destroy(GameObject.FindWithTag("fireball"), 4);
+            }
         }
     }
 
@@ -91,34 +143,57 @@ public class PlayerController : MonoBehaviour
         rigidbody2d.AddForce(new Vector2(horizontal * speed, vertical * speed));  
     }
 
-    // check tag and do damage
+    // health
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // red
-        if (other.CompareTag("red"))
+        // red crab
+        if (other.CompareTag("RedCrab"))
         {
             health -= 1;
             healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
         }
 
-        // green
-        if (other.CompareTag("green"))
+        // green crab
+        if (other.CompareTag("GreenCrab"))
         {
             health -= 2;
             healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
         }
 
-        // blue
-        if (other.CompareTag("blue"))
+        // blue crab
+        if (other.CompareTag("BlueCrab"))
         {
             health -= 3;
             healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+
+        if (other.CompareTag("BossAttack"))
+        {
+            health -= 1;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+
+        // health
+        if (other.CompareTag("health") && health < 10)
+        {
+            health += 2;
+            healthText.text = "Health: " + health.ToString();
+            other.gameObject.SetActive(false);
+        }
+        if (other.CompareTag("health") && health >= 10)
+        {
+            other.gameObject.SetActive(false);
         }
     }
 
     // jump 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        // check ground
         if (collision.collider.tag == "Ground")
         {
             if (Input.GetKey(KeyCode.Space))
@@ -126,14 +201,47 @@ public class PlayerController : MonoBehaviour
                 rigidbody2d.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
             }
         }
+
+        // fireball pickup
+        if (collision.collider.tag == "fireballPickUp")
+        {
+            fireballPickUp += 1;
+            Destroy(collision.gameObject);
+        }
     }
 
-    // normal attack
-    void Launch()
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        GameObject PlayerAttackObject = Instantiate(PlayerAttackPrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+        // red snake
+        if (collision.gameObject.tag == "RedSnake")
+        {
+            health -= 1;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
 
-        PlayerAttack playerAttack = PlayerAttackObject.GetComponent<PlayerAttack>();
-        playerAttack.Launch(gameObject.transform.position, 300);
+        // green snake
+        if (collision.gameObject.tag ==  "GreenSnake")
+        {
+            health -= 2;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+
+        // blue snake
+        if (collision.gameObject.tag == "BlueSnake")
+        {
+            health -= 3;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+
+        // boss
+        if (collision.gameObject.tag == "Boss")
+        {
+            health -= 1;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
     }
 }

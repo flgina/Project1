@@ -9,6 +9,18 @@ TagManager:
   - green
   - Ground
   - PlayerAttack
+  - health
+  - fireball
+  - fireballPickUp
+  - Projectile
+  - RedCrab
+  - GreenCrab
+  - BlueCrab
+  - RedSnake
+  - GreenSnake
+  - BlueSnake
+  - Boss
+  - BossAttack
   layers:
   - Default
   - TransparentFX

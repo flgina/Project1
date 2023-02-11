@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class Fireball : MonoBehaviour
 {
     // speed
     public float speed = 2f;
@@ -18,10 +18,10 @@ public class PlayerAttack : MonoBehaviour
     // Blue Enemy Script
     BlueCrab blueCrab;
     BlueSnake blueSnake;
-
+    
     // Boss Script
     Boss boss;
-
+    
     void Awake()
     {
         // red enemy
@@ -51,49 +51,49 @@ public class PlayerAttack : MonoBehaviour
         if (other.CompareTag("RedCrab"))
         {
             Destroy(gameObject);
-            redCrab.UpdateDamage(1);
+            redCrab.UpdateFireballDamage(1);
         }
 
         // green crab
         if (other.CompareTag("GreenCrab"))
         {
             Destroy(gameObject);
-            greenCrab.UpdateDamage(1);
+            greenCrab.UpdateFireballDamage(1);
         }
 
         // blue crab
         if (other.CompareTag("BlueCrab"))
         {
             Destroy(gameObject);
-            blueCrab.UpdateDamage(1);
+            blueCrab.UpdateFireballDamage(1);
         }
 
         // red snake
         if (other.CompareTag("RedSnake"))
         {
             Destroy(gameObject);
-            redSnake.UpdateDamage(1);
+            redSnake.UpdateFireballDamage(1);
         }
 
         // green snake
         if (other.CompareTag("GreenSnake"))
         {
             Destroy(gameObject);
-            greenSnake.UpdateDamage(1);
+            greenSnake.UpdateFireballDamage(1);
         }
 
         // blue snake
         if (other.CompareTag("BlueSnake"))
         {
             Destroy(gameObject);
-            blueSnake.UpdateDamage(1);
+            blueSnake.UpdateFireballDamage(1);
         }
 
         // boss
         if (other.CompareTag("Boss"))
         {
             Destroy(gameObject);
-            boss.UpdateDamage(1);
+            boss.UpdateFireballDamage(1);
         }
 
         // boss attack
