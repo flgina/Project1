@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public bool facingRight = true; 
     bool isMoving = false;
     private bool isJumping; 
+    private bool playerInside;
     Vector2 lookDirection = new Vector2(1,0);
  
 
@@ -33,7 +35,14 @@ public class PlayerController : MonoBehaviour
     // fire projectile
     public GameObject projectilePrefab;
     public GameObject FireballPrefab;
-    public Transform Projectilelaunch;
+    public GameObject doorClose;
+    public GameObject doorOpen;
+
+    public Transform spawnPoint;
+    public Transform spawnPoint1;
+    public Transform spawnPoint2;
+    public Transform spawnPoint3;
+    public Transform projectileLaunch;
     
 
     // fireball pick up
@@ -145,6 +154,11 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Jump", true);
         }
 
+        if (playerInside && Input.GetKeyDown(KeyCode.E))
+        {
+            SceneManager.LoadScene(2);
+        }
+
         // fire projectile
         if(Input.GetKeyDown(KeyCode.C))
         {
@@ -173,7 +187,16 @@ public class PlayerController : MonoBehaviour
             offset = new Vector3 (0, 0, -180);
         }
 
-        
+        if (health <= 0)
+        {
+            SceneManager.LoadScene(4);
+        }
+
+        // Gives Null Reference Error Every Frame until player enters level 2 but works as a win condition, should be better way.
+        // if (boss.targetDamage <= boss.CurrentDamage || boss.targetDamage <= boss.FireballDamage)
+        // {
+        //     SceneManager.LoadScene(3);
+        // }
  
     }
 
@@ -221,7 +244,7 @@ public class PlayerController : MonoBehaviour
         // blue snake
         if (collision.gameObject.tag == "BlueSnake")
         {
-           animator.SetTrigger("Hit");
+            animator.SetTrigger("Hit");
             health -= 3;
             healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
@@ -278,6 +301,41 @@ public class PlayerController : MonoBehaviour
             rigidbody2d.AddForce(transform.up * 400);
         }
 
+        if (collision.gameObject.tag == "WaterPit")
+        {
+            animator.SetTrigger("Hit");
+            health -= 1;
+            healthText.text = "Health: " + health.ToString();
+            transform.position = spawnPoint.position;
+        }
+
+        if (collision.gameObject.tag == "WaterPit1")
+        {
+            animator.SetTrigger("Hit");
+            health -= 1;
+            healthText.text = "Health: " + health.ToString();
+            transform.position = spawnPoint1.position;
+
+        }
+
+        if (collision.gameObject.tag == "WaterPit2")
+        {
+            animator.SetTrigger("Hit");
+            health -= 1;
+            healthText.text = "Health: " + health.ToString();
+            transform.position = spawnPoint2.position;
+
+        }
+
+        if (collision.gameObject.tag == "WaterPit3")
+        {
+            animator.SetTrigger("Hit");
+            health -= 1;
+            healthText.text = "Health: " + health.ToString();
+            transform.position = spawnPoint3.position;
+        }
+    
+
        /* // health
         if ((collision.gameObject.tag == "health") && health < 10)
         {
@@ -292,7 +350,7 @@ public class PlayerController : MonoBehaviour
         }*/
     }
 
-      private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
          // health
         if (other.CompareTag("health") && health < 10)
@@ -312,13 +370,32 @@ public class PlayerController : MonoBehaviour
             fireballPickUp += 1;
             Destroy(other.gameObject);
         }
+
+        if (other.CompareTag("DoorClose") )
+        {
+            doorClose.SetActive(false);
+            doorOpen.SetActive(true);
+        }
+
+        if (other.CompareTag("DoorOpen"))
+        {
+            playerInside = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("DoorOpen"))
+        {
+            playerInside = false;
+        }
     }
     
 
     void Launch()
     {
         animator.SetTrigger("Shoot 0");
-        GameObject projectileObject = Instantiate(projectilePrefab, Projectilelaunch.position, Quaternion.Euler(offset));
+        GameObject projectileObject = Instantiate(projectilePrefab, projectileLaunch.position, Quaternion.Euler(offset));
         Projectile projectile = projectileObject.GetComponent<Projectile>();
       
 
@@ -336,7 +413,7 @@ public class PlayerController : MonoBehaviour
     void Launch2()
     {
         animator.SetTrigger("Shoot 0");
-        GameObject fireballObject = Instantiate(FireballPrefab, Projectilelaunch.position, Quaternion.Euler(offset));
+        GameObject fireballObject = Instantiate(FireballPrefab, projectileLaunch.position, Quaternion.Euler(offset));
         Projectile2 projectile2 = fireballObject.GetComponent<Projectile2>();
       
 

@@ -21,6 +21,12 @@ TagManager:
   - BlueSnake
   - Boss
   - BossAttack
+  - WaterPit
+  - WaterPit1
+  - WaterPit2
+  - WaterPit3
+  - DoorClose
+  - DoorOpen
   layers:
   - Default
   - TransparentFX
