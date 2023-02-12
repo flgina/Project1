@@ -185,8 +185,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cb817aada0aecee4ca166e0287b23ecf, type: 2}
-  m_sharedMaterial: {fileID: 2562077980662762335, guid: cb817aada0aecee4ca166e0287b23ecf, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 28342fad9cab33e43a5f1e9ff367cc88, type: 2}
+  m_sharedMaterial: {fileID: 2562077980662762335, guid: 28342fad9cab33e43a5f1e9ff367cc88, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -463,8 +463,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: YOU WIN!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e705de7095fc3be4d996651cd1978a9e, type: 2}
-  m_sharedMaterial: {fileID: -6591485969014471428, guid: e705de7095fc3be4d996651cd1978a9e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f0f9bab4969f0854f8a8bcfb0a1f9025, type: 2}
+  m_sharedMaterial: {fileID: -6591485969014471428, guid: f0f9bab4969f0854f8a8bcfb0a1f9025, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -816,8 +816,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: You defeated captain dragon!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cb817aada0aecee4ca166e0287b23ecf, type: 2}
-  m_sharedMaterial: {fileID: 2562077980662762335, guid: cb817aada0aecee4ca166e0287b23ecf, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 28342fad9cab33e43a5f1e9ff367cc88, type: 2}
+  m_sharedMaterial: {fileID: 2562077980662762335, guid: 28342fad9cab33e43a5f1e9ff367cc88, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -951,8 +951,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Main menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cb817aada0aecee4ca166e0287b23ecf, type: 2}
-  m_sharedMaterial: {fileID: 2562077980662762335, guid: cb817aada0aecee4ca166e0287b23ecf, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 28342fad9cab33e43a5f1e9ff367cc88, type: 2}
+  m_sharedMaterial: {fileID: 2562077980662762335, guid: 28342fad9cab33e43a5f1e9ff367cc88, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
