@@ -4,37 +4,43 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class APlayerController : MonoBehaviour
 {
-    // move
-    Rigidbody2D rigidbody2d;
+   /* Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
-    public float speed = 3.0f;
+
+    public float speed = 0f;
     public float jumpAmount;
-    public bool facingRight = true; 
-    bool isMoving = false;
-    private bool isJumping; 
-    Vector2 lookDirection = new Vector2(1,0);
- 
 
-    private Vector3 offset;
+    private Animator animator;
 
-    // crouch
     private float yInput;
-
+    
     // health
     public TextMeshProUGUI healthText;
     public int health;
 
-    // animator
-    private Animator animator;
+    public bool facingRight = true; 
+    bool isMoving = false; 
+
+    bool isHit = false; 
+   // bool isCrouching = false;
+
+    private bool isJumping;
+   // private bool isShooting = false;
+
+    Vector2 lookDirection = new Vector2(1,0);
+
+    private Vector3 offset;
+
+    public GameObject playerCharacter;
 
     // fire projectile
     public GameObject projectilePrefab;
-    public GameObject FireballPrefab;
+    public GameObject fireballPrefab;
     public Transform Projectilelaunch;
-    
+  //  public Transform Crouchlaunch;
 
     // fireball pick up
     public int fireballPickUp = 0;
@@ -42,7 +48,7 @@ public class PlayerController : MonoBehaviour
     // Red Enemy Script
     RedCrab redCrab;
     RedSnake redSnake;
-    
+
     // Green Enemy Script
     GreenCrab greenCrab;
     GreenSnake greenSnake;
@@ -75,18 +81,16 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // move
         rigidbody2d = GetComponent<Rigidbody2D>();
-
-        // animator
         animator = GetComponent<Animator>();
 
-        // health
+         // health
         health = 10;
         healthText.text = "Health: " + health.ToString();
-        
+    
     }
 
+    // Update is called once per frame
     void Update()
     {
         //player movement
@@ -124,46 +128,52 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
 
-        // crouch
+        //crouch
         yInput = Input.GetAxisRaw("Vertical");
         if (Input.GetKeyDown(KeyCode.S))
         {
             animator.SetBool("Crouch", true);
             speed = 0f;
+           // isCrouching = true; 
         }
+
         if (Input.GetKeyUp(KeyCode.S))
         {
             animator.SetBool("Crouch", false);
             speed = 3f;
+           // isCrouching = false;
         }
-
-        //jumping 
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+    
+       //jumping 
+         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
-            rigidbody2d.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
-            isJumping = true;
-            animator.SetBool("Jump", true);
+        rigidbody2d.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
+        isJumping = true;
+        animator.SetBool("Jump", true);
+       // isMoving = true;
+
         }
 
-        // fire projectile
+      // fire projectile
         if(Input.GetKeyDown(KeyCode.C))
         {
             Launch();
-            Destroy(GameObject.FindWithTag("Projectile"), 1);
+        
         }
 
+    
         // check to see if have any fireball
         if (fireballPickUp > 0)
         {
             if(Input.GetKeyUp(KeyCode.V))
             {
-                Launch2();
+                Instantiate(fireballPrefab, Projectilelaunch.position, transform.rotation);
                 fireballPickUp -= 1;
-                Destroy(GameObject.FindWithTag("fireball"), 2);
+                Destroy(GameObject.FindWithTag("Projectile"), 4);
             }
         }
-
-        // projectile flipping
+        
+        
         if(facingRight)
         {
             offset = new Vector3(0, 0, 0);
@@ -173,9 +183,13 @@ public class PlayerController : MonoBehaviour
             offset = new Vector3 (0, 0, -180);
         }
 
+        if(isHit == true)
+        {
+            animator.SetTrigger("Hit");
+        }
         
- 
     }
+
 
     void Flip()
     {
@@ -187,114 +201,44 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // jump 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        // fireball pickup
-        if (collision.collider.tag == "fireballPickUp")
-        {
-            fireballPickUp += 1;
-            Destroy(collision.gameObject);
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        // red snake
-        if (collision.gameObject.tag == "RedSnake")
-        {
-            animator.SetTrigger("Hit");
-            health -= 1;
-            healthText.text = "Health: " + health.ToString();
-            rigidbody2d.AddForce(transform.up * 400);
-        }
-
-        // green snake
-        if (collision.gameObject.tag ==  "GreenSnake")
-        {
-            animator.SetTrigger("Hit");
-            health -= 2;
-            healthText.text = "Health: " + health.ToString();
-            rigidbody2d.AddForce(transform.up * 400);
-        }
-
-        // blue snake
-        if (collision.gameObject.tag == "BlueSnake")
-        {
-           animator.SetTrigger("Hit");
-            health -= 3;
-            healthText.text = "Health: " + health.ToString();
-            rigidbody2d.AddForce(transform.up * 400);
-        }
-
-        // boss
-        if (collision.gameObject.tag == "Boss")
-        {
-            animator.SetTrigger("Hit");
-            health -= 1;
-            healthText.text = "Health: " + health.ToString();
-            rigidbody2d.AddForce(transform.up * 400);
-        }
-
-        // jump
-        if(collision.gameObject.tag == "Ground")
-        {
-            isJumping = false;
-            animator.SetBool("Jump", false);
-        }
-
         // red crab
-        if (collision.gameObject.tag == "RedCrab")
+        if (other.CompareTag("RedCrab"))
         {
-            animator.SetTrigger("Hit");
             health -= 1;
             healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
+            isHit = true; 
         }
 
         // green crab
-        if (collision.gameObject.tag == "GreenCrab")
+        if (other.CompareTag("GreenCrab"))
         {
-            animator.SetTrigger("Hit");
             health -= 2;
             healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
+            isHit = true;
         }
 
         // blue crab
-        if (collision.gameObject.tag == "BlueCrab")
+        if (other.CompareTag("BlueCrab"))
         {
-            animator.SetTrigger("Hit");
             health -= 3;
             healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
+            isHit = true;
         }
 
-        if (collision.gameObject.tag == "BossAttack")
+        if (other.CompareTag("BossAttack"))
         {
-            animator.SetTrigger("Hit");
             health -= 1;
             healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
+            isHit = true;
         }
 
-       /* // health
-        if ((collision.gameObject.tag == "health") && health < 10)
-        {
-            health += 2;
-            healthText.text = "Health: " + health.ToString();
-            Destroy(collision.gameObject);
-        }
-
-        if ((collision.gameObject.tag == "health") && health >= 10)
-        {
-            Destroy(collision.gameObject);
-        }*/
-    }
-
-      private void OnTriggerEnter2D(Collider2D other)
-    {
-         // health
+        // health
         if (other.CompareTag("health") && health < 10)
         {
             health += 2;
@@ -305,16 +249,64 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
         }
+    }
 
-         // fireball pickup
-        if (other.CompareTag("fireballPickUp") )
+
+
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+     
+        // fireball pickup
+        if (collision.collider.tag == "fireballPickUp")
         {
             fireballPickUp += 1;
-            Destroy(other.gameObject);
+            Destroy(collision.gameObject);
         }
     }
-    
 
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        
+        if(other.gameObject.CompareTag("Ground"))
+        {
+        isJumping = false;
+        animator.SetBool("Jump", false);
+        }
+         // red snake
+        if (other.gameObject.CompareTag("RedSnake"))
+        {
+            health -= 1;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+
+        // green snake
+        if (other.gameObject.CompareTag( "GreenSnake"))
+        {
+            health -= 2;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+
+        // blue snake
+        if (other.gameObject.CompareTag( "BlueSnake"))
+        {
+            health -= 3;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+
+        // boss
+        if (other.gameObject.CompareTag("Boss"))
+        {
+            health -= 1;
+            healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+    }
+        
     void Launch()
     {
         animator.SetTrigger("Shoot 0");
@@ -331,24 +323,9 @@ public class PlayerController : MonoBehaviour
       {
         projectile.Launch(lookDirection, 300);
       }
+
     } 
 
-    void Launch2()
-    {
-        animator.SetTrigger("Shoot 0");
-        GameObject fireballObject = Instantiate(FireballPrefab, Projectilelaunch.position, Quaternion.Euler(offset));
-        Projectile2 projectile2 = fireballObject.GetComponent<Projectile2>();
-      
+   */
 
-      if(!facingRight)
-      {
-        projectile2.Launch(lookDirection, -300);
-      }
-
-     else 
-      {
-        projectile2.Launch(lookDirection, 300);
-      }
-    } 
-    
 }

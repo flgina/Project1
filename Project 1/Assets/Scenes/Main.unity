@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 250470150}
   m_Layer: 0
   m_Name: BossSpriteSheet_0 (1)
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,9 +184,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 836722186}
   m_Father: {fileID: 1295354214}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &250470148
 SpriteRenderer:
@@ -280,15 +281,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentDamage: 0
   damage: 0
-  targetDamage: 0
+  targetDamage: 1
   CurrentFireballDamage: 0
   FireballDamage: 0
   targetFireballDamage: 0
-  firballPickUp: {fileID: 3911080032744438034, guid: ee151071aa83a9a45925fa74b706f95e, type: 3}
-  health: {fileID: 4696255797021230064, guid: 754481bf077ea6b42bf01e234ba20a6d, type: 3}
-  bossAttack: {fileID: 0}
+  firballPickUp: {fileID: 4321585603598298127, guid: 76ba59e9fcbcacd4db87fba10c10bab9, type: 3}
+  health: {fileID: 1171669717624806958, guid: 8e7b78278eca66a4c8dbbe8d1b10071e, type: 3}
+  bossAttack: {fileID: 4644762316676032202, guid: cde430c85378f724ea90a18d08124402, type: 3}
   fire: 0
-  Launch: {fileID: 0}
+  Launch: {fileID: 836722186}
   speed: 3
   facingRight: 0
 --- !u!4 &265619520 stripped
@@ -404,11 +405,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836722185}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.8, y: -0.41, z: -0.21871185}
+  m_LocalPosition: {x: -3.8000002, y: -0.40999997, z: -0.21871185}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1295354214}
+  m_Father: {fileID: 250470147}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1295354212
@@ -421,11 +422,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1295354214}
   - component: {fileID: 1295354213}
-  - component: {fileID: 1295354215}
   - component: {fileID: 1295354216}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -462,36 +462,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 836722186}
   - {fileID: 250470147}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1295354215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295354212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3af8d6c3e285ed42bff21a241c3a012, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentDamage: 0
-  damage: 0
-  targetDamage: 25
-  CurrentFireballDamage: 0
-  FireballDamage: 0
-  targetFireballDamage: 15
-  firballPickUp: {fileID: 4321585603598298127, guid: 76ba59e9fcbcacd4db87fba10c10bab9, type: 3}
-  health: {fileID: 1171669717624806958, guid: 8e7b78278eca66a4c8dbbe8d1b10071e, type: 3}
-  bossAttack: {fileID: 4644762316676032202, guid: cde430c85378f724ea90a18d08124402, type: 3}
-  fire: 0
-  Launch: {fileID: 836722186}
-  speed: 3
-  facingRight: 0
 --- !u!50 &1295354216
 Rigidbody2D:
   serializedVersion: 4
@@ -551,6 +525,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2624244287862451905, guid: e1d2d102e95b893419775ee6d5971f3a, type: 3}
+      propertyPath: FireballPrefab
+      value: 
+      objectReference: {fileID: 7798084249777139457, guid: 6c7c33e8c5ce3da4390bc049781e936a, type: 3}
+    - target: {fileID: 2624244287862451905, guid: e1d2d102e95b893419775ee6d5971f3a, type: 3}
+      propertyPath: fireballPickUp
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4024040497117265459, guid: e1d2d102e95b893419775ee6d5971f3a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -569,7 +551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4024040499005047236, guid: e1d2d102e95b893419775ee6d5971f3a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.95
+      value: -2.12
       objectReference: {fileID: 0}
     - target: {fileID: 4024040499005047236, guid: e1d2d102e95b893419775ee6d5971f3a, type: 3}
       propertyPath: m_LocalPosition.z

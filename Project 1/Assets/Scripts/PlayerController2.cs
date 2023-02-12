@@ -4,9 +4,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController2 : MonoBehaviour
 {
-    // move
+    /*// move
     Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     bool isMoving = false;
     private bool isJumping; 
     Vector2 lookDirection = new Vector2(1,0);
- 
 
     private Vector3 offset;
 
@@ -34,7 +33,7 @@ public class PlayerController : MonoBehaviour
     public GameObject projectilePrefab;
     public GameObject FireballPrefab;
     public Transform Projectilelaunch;
-    
+    public Transform Crouchlaunch;
 
     // fireball pick up
     public int fireballPickUp = 0;
@@ -84,7 +83,6 @@ public class PlayerController : MonoBehaviour
         // health
         health = 10;
         healthText.text = "Health: " + health.ToString();
-        
     }
 
     void Update()
@@ -163,7 +161,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // projectile flipping
+        // animation
         if(facingRight)
         {
             offset = new Vector3(0, 0, 0);
@@ -172,9 +170,6 @@ public class PlayerController : MonoBehaviour
         {
             offset = new Vector3 (0, 0, -180);
         }
-
-        
- 
     }
 
     void Flip()
@@ -203,7 +198,6 @@ public class PlayerController : MonoBehaviour
         // red snake
         if (collision.gameObject.tag == "RedSnake")
         {
-            animator.SetTrigger("Hit");
             health -= 1;
             healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
@@ -212,7 +206,6 @@ public class PlayerController : MonoBehaviour
         // green snake
         if (collision.gameObject.tag ==  "GreenSnake")
         {
-            animator.SetTrigger("Hit");
             health -= 2;
             healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
@@ -221,7 +214,6 @@ public class PlayerController : MonoBehaviour
         // blue snake
         if (collision.gameObject.tag == "BlueSnake")
         {
-           animator.SetTrigger("Hit");
             health -= 3;
             healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
@@ -230,7 +222,6 @@ public class PlayerController : MonoBehaviour
         // boss
         if (collision.gameObject.tag == "Boss")
         {
-            animator.SetTrigger("Hit");
             health -= 1;
             healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
@@ -246,7 +237,6 @@ public class PlayerController : MonoBehaviour
         // red crab
         if (collision.gameObject.tag == "RedCrab")
         {
-            animator.SetTrigger("Hit");
             health -= 1;
             healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
@@ -255,7 +245,6 @@ public class PlayerController : MonoBehaviour
         // green crab
         if (collision.gameObject.tag == "GreenCrab")
         {
-            animator.SetTrigger("Hit");
             health -= 2;
             healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
@@ -264,7 +253,6 @@ public class PlayerController : MonoBehaviour
         // blue crab
         if (collision.gameObject.tag == "BlueCrab")
         {
-            animator.SetTrigger("Hit");
             health -= 3;
             healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
@@ -272,13 +260,12 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.tag == "BossAttack")
         {
-            animator.SetTrigger("Hit");
             health -= 1;
             healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
 
-       /* // health
+        // health
         if ((collision.gameObject.tag == "health") && health < 10)
         {
             health += 2;
@@ -289,28 +276,6 @@ public class PlayerController : MonoBehaviour
         if ((collision.gameObject.tag == "health") && health >= 10)
         {
             Destroy(collision.gameObject);
-        }*/
-    }
-
-      private void OnTriggerEnter2D(Collider2D other)
-    {
-         // health
-        if (other.CompareTag("health") && health < 10)
-        {
-            health += 2;
-            healthText.text = "Health: " + health.ToString();
-            other.gameObject.SetActive(false);
-        }
-        if (other.CompareTag("health") && health >= 10)
-        {
-            other.gameObject.SetActive(false);
-        }
-
-         // fireball pickup
-        if (other.CompareTag("fireballPickUp") )
-        {
-            fireballPickUp += 1;
-            Destroy(other.gameObject);
         }
     }
     
@@ -350,5 +315,5 @@ public class PlayerController : MonoBehaviour
         projectile2.Launch(lookDirection, 300);
       }
     } 
-    
+    */
 }

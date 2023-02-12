@@ -773,8 +773,8 @@ MonoBehaviour:
   CurrentFireballDamage: 0
   FireballDamage: 0
   targetFireballDamage: 1
-  firballPickUp: {fileID: 3911080032744438034, guid: ee151071aa83a9a45925fa74b706f95e, type: 3}
-  health: {fileID: 4696255797021230064, guid: 754481bf077ea6b42bf01e234ba20a6d, type: 3}
+  firballPickUp: {fileID: 4321585603598298127, guid: 76ba59e9fcbcacd4db87fba10c10bab9, type: 3}
+  health: {fileID: 1171669717624806958, guid: 8e7b78278eca66a4c8dbbe8d1b10071e, type: 3}
   player: {fileID: 0}
   distance: 10
   speed: 3
@@ -1177,8 +1177,8 @@ MonoBehaviour:
   CurrentFireballDamage: 0
   FireballDamage: 0
   targetFireballDamage: 1
-  firballPickUp: {fileID: 3911080032744438034, guid: ee151071aa83a9a45925fa74b706f95e, type: 3}
-  health: {fileID: 4696255797021230064, guid: 754481bf077ea6b42bf01e234ba20a6d, type: 3}
+  firballPickUp: {fileID: 4321585603598298127, guid: 76ba59e9fcbcacd4db87fba10c10bab9, type: 3}
+  health: {fileID: 1171669717624806958, guid: 8e7b78278eca66a4c8dbbe8d1b10071e, type: 3}
   player: {fileID: 0}
   distance: 10
   speed: 3
@@ -2056,8 +2056,8 @@ MonoBehaviour:
   CurrentFireballDamage: 0
   FireballDamage: 0
   targetFireballDamage: 0
-  firballPickUp: {fileID: 3911080032744438034, guid: ee151071aa83a9a45925fa74b706f95e, type: 3}
-  health: {fileID: 4696255797021230064, guid: 754481bf077ea6b42bf01e234ba20a6d, type: 3}
+  firballPickUp: {fileID: 4321585603598298127, guid: 76ba59e9fcbcacd4db87fba10c10bab9, type: 3}
+  health: {fileID: 1171669717624806958, guid: 8e7b78278eca66a4c8dbbe8d1b10071e, type: 3}
   player: {fileID: 4024040499013545715}
   distance: 10
   speed: 3
@@ -2682,28 +2682,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2624244287837307387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4024040499013545715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b69687358f36cc448a50a4e1304a9aa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  jumpAmount: 30
-  facingRight: 1
-  healthText: {fileID: 953815995}
-  health: 0
-  projectilePrefab: {fileID: 8517719243838585014, guid: 581415e01417799429df919d3820d74c, type: 3}
-  FireballPrefab: {fileID: 7798084249777139457, guid: 6c7c33e8c5ce3da4390bc049781e936a, type: 3}
-  Projectilelaunch: {fileID: 4024040497142190345}
-  Crouchlaunch: {fileID: 4024040498203464726}
-  fireballPickUp: 0
 --- !u!1 &3273333390976379001
 GameObject:
   m_ObjectHideFlags: 0
@@ -2753,8 +2731,8 @@ MonoBehaviour:
   CurrentFireballDamage: 0
   FireballDamage: 0
   targetFireballDamage: 0
-  firballPickUp: {fileID: 3911080032744438034, guid: ee151071aa83a9a45925fa74b706f95e, type: 3}
-  health: {fileID: 4696255797021230064, guid: 754481bf077ea6b42bf01e234ba20a6d, type: 3}
+  firballPickUp: {fileID: 4321585603598298127, guid: 76ba59e9fcbcacd4db87fba10c10bab9, type: 3}
+  health: {fileID: 1171669717624806958, guid: 8e7b78278eca66a4c8dbbe8d1b10071e, type: 3}
   speed: 2
   startMarker: {fileID: 4845536462948009048}
   endMarker: {fileID: 4896280680402957282}
@@ -2904,7 +2882,7 @@ GameObject:
   - component: {fileID: 4024040499013545713}
   - component: {fileID: 4024040499013545712}
   - component: {fileID: 4024040499013545727}
-  - component: {fileID: 2624244287837307387}
+  - component: {fileID: 4024040499013545728}
   - component: {fileID: 4024040499013545723}
   - component: {fileID: 4024040499013545722}
   m_Layer: 0
@@ -2964,7 +2942,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4024040499013545715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.84, y: -2.11, z: 0}
+  m_LocalPosition: {x: -7.98, y: -1.06, z: 0}
   m_LocalScale: {x: 0.6376, y: 0.6376, z: 0.6376}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2994,6 +2972,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &4024040499013545728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4024040499013545715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9abbeedb2cd965c43aea015a0f45d544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  jumpAmount: 15
+  facingRight: 1
+  healthText: {fileID: 953815995}
+  health: 0
+  projectilePrefab: {fileID: 8517719243838585014, guid: 581415e01417799429df919d3820d74c, type: 3}
+  FireballPrefab: {fileID: 7798084249777139457, guid: 6c7c33e8c5ce3da4390bc049781e936a, type: 3}
+  Projectilelaunch: {fileID: 4024040497142190345}
+  fireballPickUp: 0
 --- !u!114 &4458239254866303445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3012,8 +3011,8 @@ MonoBehaviour:
   CurrentFireballDamage: 0
   FireballDamage: 0
   targetFireballDamage: 1
-  firballPickUp: {fileID: 3911080032744438034, guid: ee151071aa83a9a45925fa74b706f95e, type: 3}
-  health: {fileID: 4696255797021230064, guid: 754481bf077ea6b42bf01e234ba20a6d, type: 3}
+  firballPickUp: {fileID: 4321585603598298127, guid: 76ba59e9fcbcacd4db87fba10c10bab9, type: 3}
+  health: {fileID: 1171669717624806958, guid: 8e7b78278eca66a4c8dbbe8d1b10071e, type: 3}
   speed: 2
   startMarker: {fileID: 3820670511256088817}
   endMarker: {fileID: 7867112649656569756}
@@ -3127,8 +3126,8 @@ MonoBehaviour:
   CurrentFireballDamage: 0
   FireballDamage: 0
   targetFireballDamage: 1
-  firballPickUp: {fileID: 3911080032744438034, guid: ee151071aa83a9a45925fa74b706f95e, type: 3}
-  health: {fileID: 4696255797021230064, guid: 754481bf077ea6b42bf01e234ba20a6d, type: 3}
+  firballPickUp: {fileID: 4321585603598298127, guid: 76ba59e9fcbcacd4db87fba10c10bab9, type: 3}
+  health: {fileID: 1171669717624806958, guid: 8e7b78278eca66a4c8dbbe8d1b10071e, type: 3}
   speed: 2
   startMarker: {fileID: 1988865782452278806}
   endMarker: {fileID: 7347136010877794197}
