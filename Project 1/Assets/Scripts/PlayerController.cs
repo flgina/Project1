@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
-    public float speed = 3.0f;
+    public float speed = 5.0f;
     public float jumpAmount;
     public bool facingRight = true; 
     bool isMoving = false;
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private float yInput;
 
     // health
-    public TextMeshProUGUI healthText;
+    //public TextMeshProUGUI healthText;
     public int health;
 
     // animator
@@ -92,7 +92,8 @@ public class PlayerController : MonoBehaviour
 
         // health
         health = 10;
-        healthText.text = "Health: " + health.ToString();
+        HealthBar.instance.SetupHearts(health);
+        //healthText.text = "Health: " + health.ToString();
         
     }
 
@@ -102,9 +103,12 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
+        rigidbody2d.velocity = new Vector2(horizontal * speed, rigidbody2d.velocity.y);
+
+
         if (horizontal != 0)
         {
-            rigidbody2d.AddForce(new Vector2(horizontal * speed, 0f));
+            //rigidbody2d.AddForce(new Vector2(horizontal * speed, 0f));
             isMoving = true;
          
             animator.SetBool("Moving", true);
@@ -143,7 +147,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.S))
         {
             animator.SetBool("Crouch", false);
-            speed = 3f;
+            speed = 5f;
         }
 
         //jumping 
@@ -228,7 +232,8 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Hit");
             health -= 1;
-            healthText.text = "Health: " + health.ToString();
+            HealthBar.instance.RemoveHearts(1);
+            //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
 
@@ -237,7 +242,8 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Hit");
             health -= 2;
-            healthText.text = "Health: " + health.ToString();
+            HealthBar.instance.RemoveHearts(2);
+            //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
 
@@ -246,7 +252,8 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Hit");
             health -= 3;
-            healthText.text = "Health: " + health.ToString();
+            HealthBar.instance.RemoveHearts(3);
+            //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
 
@@ -255,7 +262,8 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Hit");
             health -= 1;
-            healthText.text = "Health: " + health.ToString();
+            HealthBar.instance.RemoveHearts(1);
+            //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
 
@@ -271,7 +279,8 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Hit");
             health -= 1;
-            healthText.text = "Health: " + health.ToString();
+            HealthBar.instance.RemoveHearts(1);
+            //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
 
@@ -280,7 +289,8 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Hit");
             health -= 2;
-            healthText.text = "Health: " + health.ToString();
+            HealthBar.instance.RemoveHearts(2);
+            //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
 
@@ -289,7 +299,8 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Hit");
             health -= 3;
-            healthText.text = "Health: " + health.ToString();
+            HealthBar.instance.RemoveHearts(3);
+            //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
 
@@ -297,7 +308,8 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Hit");
             health -= 1;
-            healthText.text = "Health: " + health.ToString();
+            HealthBar.instance.RemoveHearts(1);
+            //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
 
@@ -305,7 +317,8 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Hit");
             health -= 1;
-            healthText.text = "Health: " + health.ToString();
+            HealthBar.instance.RemoveHearts(1);
+            //healthText.text = "Health: " + health.ToString();
             transform.position = spawnPoint.position;
         }
 
@@ -313,7 +326,8 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Hit");
             health -= 1;
-            healthText.text = "Health: " + health.ToString();
+            HealthBar.instance.RemoveHearts(1);
+            //healthText.text = "Health: " + health.ToString();
             transform.position = spawnPoint1.position;
 
         }
@@ -322,7 +336,8 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Hit");
             health -= 1;
-            healthText.text = "Health: " + health.ToString();
+            HealthBar.instance.RemoveHearts(1);
+            //healthText.text = "Health: " + health.ToString();
             transform.position = spawnPoint2.position;
 
         }
@@ -331,7 +346,8 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Hit");
             health -= 1;
-            healthText.text = "Health: " + health.ToString();
+            HealthBar.instance.RemoveHearts(1);
+            //healthText.text = "Health: " + health.ToString();
             transform.position = spawnPoint3.position;
         }
     
@@ -356,7 +372,8 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("health") && health < 10)
         {
             health += 2;
-            healthText.text = "Health: " + health.ToString();
+            HealthBar.instance.AddHearts(2);
+            //healthText.text = "Health: " + health.ToString();
             other.gameObject.SetActive(false);
         }
         if (other.CompareTag("health") && health >= 10)

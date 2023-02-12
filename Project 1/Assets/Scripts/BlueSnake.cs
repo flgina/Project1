@@ -77,6 +77,8 @@ public class BlueSnake : MonoBehaviour
     {
         // jump
         rigidbody2d.AddForce(new Vector2(horizontal * speed, vertical * speed));  
+
+        //rigidbody2d.velocity = new Vector2(horizontal * speed, rigidbody2d.velocity.y);
     }
 
     // jump 

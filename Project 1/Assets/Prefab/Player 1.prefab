@@ -206,14 +206,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9abbeedb2cd965c43aea015a0f45d544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 5
   jumpAmount: 15
   facingRight: 1
   healthText: {fileID: 0}
   health: 0
   projectilePrefab: {fileID: 8517719243838585014, guid: 581415e01417799429df919d3820d74c, type: 3}
   FireballPrefab: {fileID: 7798084249777139457, guid: 6c7c33e8c5ce3da4390bc049781e936a, type: 3}
-  Projectilelaunch: {fileID: 1439596456615594414}
+  doorClose: {fileID: 0}
+  doorOpen: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  spawnPoint1: {fileID: 0}
+  spawnPoint2: {fileID: 0}
+  spawnPoint3: {fileID: 0}
+  projectileLaunch: {fileID: 0}
   fireballPickUp: 0
 --- !u!61 &1439596457965745756
 BoxCollider2D:
