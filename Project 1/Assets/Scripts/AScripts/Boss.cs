@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class Boss : MonoBehaviour
 
     // life pickup
     public GameObject health;
+
+    public AudioSource audioSource;
+    public AudioClip hitSound;
+    public AudioClip chainSound;
 
     // player controller
     PlayerController playerController;
@@ -63,6 +68,9 @@ public class Boss : MonoBehaviour
         anim = GetComponent<Animator>();
         fire = 10f;
         nextFire = Time.time;
+
+        audioSource = GetComponent<AudioSource>();
+
     }
     // attack player
     void Update()
@@ -74,7 +82,6 @@ public class Boss : MonoBehaviour
             Flip ();
         if (playerController.transform.position.x > gameObject.transform.position.x && !facingRight)
             Flip ();
-
     }
 
     void Flip () {
@@ -91,6 +98,7 @@ public class Boss : MonoBehaviour
         if (Time.time > nextFire)
         {
             Instantiate(bossAttack, Launch.position, Quaternion.identity);
+            PlaySound(chainSound);
             nextFire = Time.time + fire;
         }
     }
@@ -99,6 +107,8 @@ public class Boss : MonoBehaviour
     public void UpdateDamage(int damage)
     {
         CurrentDamage += damage;
+        PlaySound(hitSound);
+
         if (targetDamage == CurrentDamage)
         {
             Debug.Log("Target: " + targetDamage);
@@ -117,6 +127,8 @@ public class Boss : MonoBehaviour
     public void UpdateFireballDamage(int FireballDamage)
     {
         CurrentFireballDamage += FireballDamage;
+        PlaySound(hitSound);
+
         if (targetFireballDamage == CurrentFireballDamage)
         {
             Destroy(gameObject);
@@ -129,5 +141,10 @@ public class Boss : MonoBehaviour
             Instantiate(firballPickUp, transform.position, Quaternion.identity);
             Instantiate(health, transform.position, Quaternion.identity);
         }
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        AudioSource.PlayClipAtPoint(clip, gameObject.transform.position);
     }
 }

@@ -20,6 +20,9 @@ public class BlueSnake : MonoBehaviour
     // life pickup
     public GameObject health;
 
+    public AudioSource audioSource;
+    public AudioClip hitSound;
+
     // player controller
     PlayerController playerController;
 
@@ -55,6 +58,8 @@ public class BlueSnake : MonoBehaviour
         playerPos = player.GetComponent<Transform>();
         currentPos = GetComponent<Transform>().position;
         rigidbody2d = GetComponent<Rigidbody2D>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // attack player
@@ -95,6 +100,7 @@ public class BlueSnake : MonoBehaviour
     public void UpdateDamage(int damage)
     {
         CurrentDamage += damage;
+        PlaySound(hitSound);
         if (targetDamage == CurrentDamage)
         {
             Destroy(gameObject);
@@ -111,6 +117,7 @@ public class BlueSnake : MonoBehaviour
     public void UpdateFireballDamage(int FireballDamage)
     {
         CurrentFireballDamage += FireballDamage;
+        PlaySound(hitSound);
         if (targetFireballDamage == CurrentFireballDamage)
         {
             Destroy(gameObject);
@@ -123,5 +130,10 @@ public class BlueSnake : MonoBehaviour
                 Instantiate(health, transform.position, Quaternion.identity);
             }
         }
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        AudioSource.PlayClipAtPoint(clip, gameObject.transform.position);
     }
 }

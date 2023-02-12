@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthBar : MonoBehaviour
 {
@@ -14,11 +15,20 @@ public class HealthBar : MonoBehaviour
 
     HeartContainer currentContainer;
 
+    public void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
+        
         heartContainers = new List<GameObject>();
+
+        //SceneManager.activeSceneChanged += LoadHealthBarLevelTwo;
+
+       // SetupHearts(10);
     }
 
     public void SetupHearts(int heartsIn)
@@ -76,4 +86,9 @@ public class HealthBar : MonoBehaviour
 
         currentContainer.SetHeart(currentHearts);
     }
+
+    // public void LoadHealthBarLevelTwo(Scene current, Scene next)
+    // {
+    //     if (next.buildIndex == 2) { print("yo"); SetupHearts(10); }
+    // }
 }

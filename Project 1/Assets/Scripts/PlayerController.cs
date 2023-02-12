@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +33,10 @@ public class PlayerController : MonoBehaviour
     // animator
     private Animator animator;
 
+    public float timeInvincible = 0.5f;
+    bool isInvincible;
+    float invincibleTimer;
+
     // fire projectile
     public GameObject projectilePrefab;
     public GameObject FireballPrefab;
@@ -47,6 +52,13 @@ public class PlayerController : MonoBehaviour
 
     // fireball pick up
     public int fireballPickUp = 0;
+
+    public AudioSource audioSource;
+    public AudioClip jumpSound;
+    public AudioClip powerUpSound;
+    public AudioClip healthUpSound;
+    public AudioClip fireBallSound;
+    public AudioClip hitSound;
 
     // Red Enemy Script
     RedCrab redCrab;
@@ -90,10 +102,16 @@ public class PlayerController : MonoBehaviour
         // animator
         animator = GetComponent<Animator>();
 
+        audioSource = GetComponent<AudioSource>();
+
         // health
         health = 10;
         HealthBar.instance.SetupHearts(health);
+
+        print("wtfff");
         //healthText.text = "Health: " + health.ToString();
+
+        //backgroundMusic.ChangeBackgroundMusic();
         
     }
 
@@ -154,6 +172,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             rigidbody2d.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
+            PlaySound(jumpSound);
             isJumping = true;
             animator.SetBool("Jump", true);
         }
@@ -163,10 +182,24 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene(2);
         }
 
+        if (isInvincible)
+        {
+            invincibleTimer -= Time.deltaTime;
+            if (invincibleTimer < 0)
+                isInvincible = false;
+        }
+
+        // cheat to level 2
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SceneManager.LoadScene(2);
+        }
+
         // fire projectile
         if(Input.GetKeyDown(KeyCode.C))
         {
             Launch();
+            PlaySound(fireBallSound);
             Destroy(GameObject.FindWithTag("Projectile"), 1);
         }
 
@@ -176,6 +209,7 @@ public class PlayerController : MonoBehaviour
             if(Input.GetKeyUp(KeyCode.V))
             {
                 Launch2();
+                PlaySound(fireBallSound);
                 fireballPickUp -= 1;
                 Destroy(GameObject.FindWithTag("fireball"), 2);
             }
@@ -196,11 +230,11 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene(4);
         }
 
-        // Gives Null Reference Error Every Frame until player enters level 2 but works as a win condition, should be better way.
-        // if (boss.targetDamage <= boss.CurrentDamage || boss.targetDamage <= boss.FireballDamage)
-        // {
-        //     SceneManager.LoadScene(3);
-        // }
+        if ((boss?.targetDamage <= boss?.CurrentDamage || boss?.targetFireballDamage <= boss?.CurrentFireballDamage))
+        {
+            //BackgroundMusicManager.instance.GetComponent<AudioSource>().Play();
+            SceneManager.LoadScene(3);
+        }
  
     }
 
@@ -212,6 +246,11 @@ public class PlayerController : MonoBehaviour
 
         facingRight = !facingRight; 
 
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 
     // jump 
@@ -230,9 +269,16 @@ public class PlayerController : MonoBehaviour
         // red snake
         if (collision.gameObject.tag == "RedSnake")
         {
+            if (isInvincible)
+                return;
+            
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+
             animator.SetTrigger("Hit");
             health -= 1;
             HealthBar.instance.RemoveHearts(1);
+            PlaySound(hitSound);
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
@@ -240,9 +286,16 @@ public class PlayerController : MonoBehaviour
         // green snake
         if (collision.gameObject.tag ==  "GreenSnake")
         {
+            if (isInvincible)
+                return;
+            
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+
             animator.SetTrigger("Hit");
             health -= 2;
             HealthBar.instance.RemoveHearts(2);
+            PlaySound(hitSound);
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
@@ -250,9 +303,16 @@ public class PlayerController : MonoBehaviour
         // blue snake
         if (collision.gameObject.tag == "BlueSnake")
         {
+            if (isInvincible)
+                return;
+            
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+
             animator.SetTrigger("Hit");
             health -= 3;
             HealthBar.instance.RemoveHearts(3);
+            PlaySound(hitSound);
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
@@ -260,9 +320,16 @@ public class PlayerController : MonoBehaviour
         // boss
         if (collision.gameObject.tag == "Boss")
         {
+            if (isInvincible)
+                return;
+            
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+
             animator.SetTrigger("Hit");
             health -= 1;
             HealthBar.instance.RemoveHearts(1);
+            PlaySound(hitSound);
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
@@ -277,9 +344,16 @@ public class PlayerController : MonoBehaviour
         // red crab
         if (collision.gameObject.tag == "RedCrab")
         {
+            if (isInvincible)
+                return;
+            
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+
             animator.SetTrigger("Hit");
             health -= 1;
             HealthBar.instance.RemoveHearts(1);
+            PlaySound(hitSound);
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
@@ -287,9 +361,16 @@ public class PlayerController : MonoBehaviour
         // green crab
         if (collision.gameObject.tag == "GreenCrab")
         {
+            if (isInvincible)
+                return;
+            
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+
             animator.SetTrigger("Hit");
             health -= 2;
             HealthBar.instance.RemoveHearts(2);
+            PlaySound(hitSound);
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
@@ -297,36 +378,64 @@ public class PlayerController : MonoBehaviour
         // blue crab
         if (collision.gameObject.tag == "BlueCrab")
         {
+            if (isInvincible)
+                return;
+            
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+
             animator.SetTrigger("Hit");
             health -= 3;
             HealthBar.instance.RemoveHearts(3);
+            PlaySound(hitSound);
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
 
         if (collision.gameObject.tag == "BossAttack")
         {
+            if (isInvincible)
+                return;
+            
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+
             animator.SetTrigger("Hit");
             health -= 1;
             HealthBar.instance.RemoveHearts(1);
+            PlaySound(hitSound);
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
 
         if (collision.gameObject.tag == "WaterPit")
         {
+            if (isInvincible)
+                return;
+            
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+
             animator.SetTrigger("Hit");
             health -= 1;
             HealthBar.instance.RemoveHearts(1);
+            PlaySound(hitSound);
             //healthText.text = "Health: " + health.ToString();
             transform.position = spawnPoint.position;
         }
 
         if (collision.gameObject.tag == "WaterPit1")
         {
+            if (isInvincible)
+                return;
+            
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+
             animator.SetTrigger("Hit");
             health -= 1;
             HealthBar.instance.RemoveHearts(1);
+            PlaySound(hitSound);
             //healthText.text = "Health: " + health.ToString();
             transform.position = spawnPoint1.position;
 
@@ -334,9 +443,16 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.tag == "WaterPit2")
         {
+            if (isInvincible)
+                return;
+            
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+
             animator.SetTrigger("Hit");
             health -= 1;
             HealthBar.instance.RemoveHearts(1);
+            PlaySound(hitSound);
             //healthText.text = "Health: " + health.ToString();
             transform.position = spawnPoint2.position;
 
@@ -344,9 +460,16 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.tag == "WaterPit3")
         {
+            if (isInvincible)
+                return;
+            
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+            
             animator.SetTrigger("Hit");
             health -= 1;
             HealthBar.instance.RemoveHearts(1);
+            PlaySound(hitSound);
             //healthText.text = "Health: " + health.ToString();
             transform.position = spawnPoint3.position;
         }
@@ -373,6 +496,7 @@ public class PlayerController : MonoBehaviour
         {
             health += 2;
             HealthBar.instance.AddHearts(2);
+            PlaySound(healthUpSound);
             //healthText.text = "Health: " + health.ToString();
             other.gameObject.SetActive(false);
         }
@@ -385,7 +509,9 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("fireballPickUp") )
         {
             fireballPickUp += 1;
+            PlaySound(powerUpSound);
             Destroy(other.gameObject);
+            
         }
 
         if (other.CompareTag("DoorClose") )

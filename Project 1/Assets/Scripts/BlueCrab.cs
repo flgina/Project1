@@ -20,6 +20,9 @@ public class BlueCrab : MonoBehaviour
     // life pickup
     public GameObject health;
 
+    public AudioSource audioSource;
+    public AudioClip hitSound;
+
     // player controller
     PlayerController playerController;
 
@@ -51,6 +54,9 @@ public class BlueCrab : MonoBehaviour
         // movement
         startTime = Time.time;
         journeyLength = Vector2.Distance(startMarker.position, endMarker.position);
+
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     void Update()
@@ -64,9 +70,11 @@ public class BlueCrab : MonoBehaviour
     public void UpdateDamage(int damage)
     {
         CurrentDamage += damage;
+        PlaySound(hitSound);
         if (targetDamage == CurrentDamage)
         {
             Destroy(gameObject);
+            
             if (Random.value <= 0.6)
             {
                 Instantiate(firballPickUp, transform.position, Quaternion.identity);
@@ -80,6 +88,7 @@ public class BlueCrab : MonoBehaviour
     public void UpdateFireballDamage(int FireballDamage)
     {
         CurrentFireballDamage += FireballDamage;
+        PlaySound(hitSound);
         if (targetFireballDamage == CurrentFireballDamage)
         {
             Destroy(gameObject);
@@ -92,5 +101,10 @@ public class BlueCrab : MonoBehaviour
                 Instantiate(health, transform.position, Quaternion.identity);
             }
         }
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        AudioSource.PlayClipAtPoint(clip, gameObject.transform.position);
     }
 }
