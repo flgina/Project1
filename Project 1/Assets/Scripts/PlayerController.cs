@@ -465,7 +465,7 @@ public class PlayerController : MonoBehaviour
             
             isInvincible = true;
             invincibleTimer = timeInvincible;
-            
+
             animator.SetTrigger("Hit");
             health -= 1;
             HealthBar.instance.RemoveHearts(1);
@@ -524,6 +524,27 @@ public class PlayerController : MonoBehaviour
         {
             playerInside = true;
         }
+
+        if (other.CompareTag("BossAttack"))
+        {
+            if (isInvincible)
+                return;
+            
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+
+            animator.SetTrigger("Hit");
+            health -= 1;
+            HealthBar.instance.RemoveHearts(1);
+            PlaySound(hitSound);
+            //healthText.text = "Health: " + health.ToString();
+            rigidbody2d.AddForce(transform.up * 400);
+        }
+
+        // if (other.CompareTag("BossAttack"))
+        // {
+        //     playerInside = true;
+        // }
     }
 
     private void OnTriggerExit2D(Collider2D other)

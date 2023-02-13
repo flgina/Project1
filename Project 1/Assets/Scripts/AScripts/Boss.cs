@@ -54,19 +54,19 @@ public class Boss : MonoBehaviour
         // normal attack
         damage = 0;
         CurrentDamage = 0;
-        targetDamage = 25;
+        targetDamage = 40;
         
         // fireball
         FireballDamage = 0;
         CurrentFireballDamage = 0;
-        targetFireballDamage = 15;
+        targetFireballDamage = 20;
 
         // attack player
         playerController = GameObject.FindObjectOfType<PlayerController>();
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rigidbody2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        fire = 10f;
+        fire = 7f;
         nextFire = Time.time;
 
         audioSource = GetComponent<AudioSource>();

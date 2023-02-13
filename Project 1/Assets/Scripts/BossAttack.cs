@@ -24,9 +24,9 @@ public class BossAttack : MonoBehaviour
         Destroy(gameObject, 3f);
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (collider.gameObject.name.Equals ("Player"))
+        if (other.gameObject.tag == "Player")
         {
             Destroy(gameObject);
         }
