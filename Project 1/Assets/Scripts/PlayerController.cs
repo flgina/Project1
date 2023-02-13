@@ -75,6 +75,8 @@ public class PlayerController : MonoBehaviour
     // Boss Script
     Boss boss;
 
+    public ParticleSystem hitEffect;
+
     void Awake()
     {
         // red enemy
@@ -279,6 +281,7 @@ public class PlayerController : MonoBehaviour
             health -= 1;
             HealthBar.instance.RemoveHearts(1);
             PlaySound(hitSound);
+            hitEffect.Play();
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
@@ -296,6 +299,7 @@ public class PlayerController : MonoBehaviour
             health -= 2;
             HealthBar.instance.RemoveHearts(2);
             PlaySound(hitSound);
+            hitEffect.Play();
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
@@ -313,6 +317,8 @@ public class PlayerController : MonoBehaviour
             health -= 3;
             HealthBar.instance.RemoveHearts(3);
             PlaySound(hitSound);
+            hitEffect.Play();
+
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
@@ -330,6 +336,8 @@ public class PlayerController : MonoBehaviour
             health -= 1;
             HealthBar.instance.RemoveHearts(1);
             PlaySound(hitSound);
+            hitEffect.Play();
+
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
@@ -354,6 +362,9 @@ public class PlayerController : MonoBehaviour
             health -= 1;
             HealthBar.instance.RemoveHearts(1);
             PlaySound(hitSound);
+
+            hitEffect.Play();
+
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
@@ -371,6 +382,9 @@ public class PlayerController : MonoBehaviour
             health -= 2;
             HealthBar.instance.RemoveHearts(2);
             PlaySound(hitSound);
+
+            hitEffect.Play();
+
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
@@ -388,6 +402,9 @@ public class PlayerController : MonoBehaviour
             health -= 3;
             HealthBar.instance.RemoveHearts(3);
             PlaySound(hitSound);
+
+            hitEffect.Play();
+
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
@@ -404,6 +421,9 @@ public class PlayerController : MonoBehaviour
             health -= 1;
             HealthBar.instance.RemoveHearts(1);
             PlaySound(hitSound);
+
+            hitEffect.Play();
+
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
@@ -420,6 +440,7 @@ public class PlayerController : MonoBehaviour
             health -= 1;
             HealthBar.instance.RemoveHearts(1);
             PlaySound(hitSound);
+
             //healthText.text = "Health: " + health.ToString();
             transform.position = spawnPoint.position;
         }
@@ -537,6 +558,7 @@ public class PlayerController : MonoBehaviour
             health -= 1;
             HealthBar.instance.RemoveHearts(1);
             PlaySound(hitSound);
+            hitEffect.Play();
             //healthText.text = "Health: " + health.ToString();
             rigidbody2d.AddForce(transform.up * 400);
         }
